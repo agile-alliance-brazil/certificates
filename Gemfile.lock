@@ -1,0 +1,20 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    actionmailer (2.3.18)
+      actionpack (= 2.3.18)
+    actionpack (2.3.18)
+      activesupport (= 2.3.18)
+      rack (~> 1.1.0)
+    activesupport (2.3.18)
+    dotenv (1.0.2)
+    json (1.8.1)
+    rack (1.1.6)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  actionmailer (= 2.3.18)
+  dotenv
+  json

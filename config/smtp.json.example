@@ -1,0 +1,5 @@
+{
+  "user": "your-user",
+  "domain": "yourconf.org",
+  "smtp_server": "mail.yourconf.org"
+}
