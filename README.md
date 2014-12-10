@@ -1,4 +1,4 @@
-Certificates generation and mailer
+Certificates generation and mailer [![Dependency Status](https://gemnasium.com/agile-alliance-brazil/certificates.svg)](https://gemnasium.com/agile-alliance-brazil/certificates) [![Code Climate](https://codeclimate.com/github/agile-alliance-brazil/certificates/badges/gpa.svg)](https://codeclimate.com/github/agile-alliance-brazil/certificates)
 ==================================
 
 This is a small helper script to generate and send attendees a certificate PDF based on an SVG and a CSV and a couple properties in JSON format.
