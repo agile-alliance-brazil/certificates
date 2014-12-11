@@ -1,6 +1,5 @@
 #encoding: UTF-8
 require_relative '../spec_helper.rb'
-require_relative '../../lib/csv_parser.rb'
 
 describe CSVParser do
   it 'should ignore first row if header is true' do

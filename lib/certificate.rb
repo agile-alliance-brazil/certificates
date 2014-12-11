@@ -10,15 +10,10 @@ require 'rubygems'
 require 'dotenv'
 require 'json'
 require 'fileutils'
-require File.expand_path('../extensions/net_smtp.rb', File.dirname(__FILE__))
-require File.expand_path('../extensions/action_mailer.rb', File.dirname(__FILE__))
-require File.expand_path('./certificate_sender.rb', File.dirname(__FILE__))
-require File.expand_path('./certificate_mailer.rb', File.dirname(__FILE__))
-require File.expand_path('./attendee.rb', File.dirname(__FILE__))
-require File.expand_path('./csv_parser.rb', File.dirname(__FILE__))
-require File.expand_path('./bulk_processor.rb', File.dirname(__FILE__))
-
 Dotenv.load
+
+require_relative './certificates.rb'
+
 
 required_env_variables = ['INKSCAPE_PATH', 'EMAIL_PASSWORD']
 
