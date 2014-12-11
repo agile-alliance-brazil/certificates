@@ -15,7 +15,7 @@ Dotenv.load
 require_relative './certificates.rb'
 
 
-required_env_variables = ['INKSCAPE_PATH', 'EMAIL_PASSWORD']
+required_env_variables = ['INKSCAPE_PATH', 'PASSWORD']
 
 env_path = File.expand_path('../.env', File.dirname(__FILE__))
 unless File.exists?(env_path)
