@@ -11,6 +11,7 @@ def darwin_only(require_as)
 end
 
 gem 'dotenv'
+gem 'rake'
 gem 'actionmailer', '2.3.18'
 gem 'json'
 
