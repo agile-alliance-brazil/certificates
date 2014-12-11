@@ -1,4 +1,4 @@
-Certificates generation and mailer [![Dependency Status](https://gemnasium.com/agile-alliance-brazil/certificates.svg)](https://gemnasium.com/agile-alliance-brazil/certificates) [![Code Climate](https://codeclimate.com/github/agile-alliance-brazil/certificates/badges/gpa.svg)](https://codeclimate.com/github/agile-alliance-brazil/certificates)
+Certificates generation and mailer [![Build Status](https://snap-ci.com/agile-alliance-brazil/certificates/branch/master/build_image)](https://snap-ci.com/agile-alliance-brazil/certificates/branch/master) [![Dependency Status](https://gemnasium.com/agile-alliance-brazil/certificates.svg)](https://gemnasium.com/agile-alliance-brazil/certificates) [![Code Climate](https://codeclimate.com/github/agile-alliance-brazil/certificates/badges/gpa.svg)](https://codeclimate.com/github/agile-alliance-brazil/certificates) [![Test Coverage](https://codeclimate.com/github/agile-alliance-brazil/certificates/badges/coverage.svg)](https://codeclimate.com/github/agile-alliance-brazil/certificates)
 ==================================
 
 This is a small helper script to generate and send attendees a certificate PDF based on an SVG and a CSV and a couple properties in JSON format.
@@ -6,7 +6,7 @@ This is a small helper script to generate and send attendees a certificate PDF b
 Prerequisite
 ============
 
-In order to run this script you need [ruby 1.8.7](http://cache.ruby-lang.org/pub/ruby/1.8/ruby-1.8.7-p374.zip) installed and [bundler](http://bundler.io/).
+In order to run this script you need [ruby 1.9.3](http://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p551.tar.gz) installed and [bundler](http://bundler.io/).
 
 How to Use
 ==========
@@ -28,4 +28,9 @@ bundle exec ruby ./lib/certificate.rb your-csv-filename.csv your-svg-model-filen
 ```
 
 This should generate the certificates for you and just print what action would be taken (not actually sending the emails). Once you're happy with the results, just run the same thing without the '--dry-run' option.
+
+Development
+===========
+
+You can start guard with ``dev.sh`` or just run all tests with ``bundle exec rake``.
 
