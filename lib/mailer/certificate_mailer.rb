@@ -14,6 +14,6 @@ class CertificateMailer < ActionMailer::Base
     end
   end
   def self.dry_run!
-    Mail.register_interceptor DryRunInterceptor
+    Mail.register_interceptor DryRunInterceptor.new
   end
 end
