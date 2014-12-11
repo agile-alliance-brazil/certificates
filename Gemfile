@@ -12,13 +12,15 @@ end
 
 gem 'dotenv'
 gem 'rake'
-gem 'actionmailer', '2.3.18'
+gem 'actionmailer', '4.1.8'
 gem 'json'
 
 group :development, :test do
   gem 'rspec'
   gem 'guard'
   gem 'guard-rspec'
+  gem 'debugger'
+  gem 'pry'
   gem 'rb-fsevent', require: darwin_only('rb-fsevent')
   gem 'terminal-notifier-guard', require: darwin_only('terminal-notifier-guard')
   gem 'libnotify', require: linux_only('rb-inotify')

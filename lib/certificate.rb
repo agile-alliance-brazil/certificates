@@ -32,7 +32,7 @@ mail_configs = JSON.parse(File.read(File.expand_path('../config/smtp.json', File
 dry_run = ARGV.size > 2 && ARGV[2]=="--dry-run"
 if dry_run
   CertificateMailer.dry_run!
-  missing_variables.reject{|variable| variable == 'INKSCAPE_PATH'}
+  missing_variables.reject{|variable| variable == 'PASSWORD'}
 end
 
 unless missing_variables.empty?
