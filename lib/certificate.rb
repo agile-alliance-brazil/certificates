@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+#encoding: UTF-8
 if ARGV.size < 2
   path = File.expand_path(__FILE__, File.dirname(__FILE__))
   puts "Usage: #{path} csv-filename.csv svg-model-filename.svg [--dry-run]"
@@ -64,7 +65,9 @@ mail_configs['password'] = ENV['PASSWORD'] unless dry_run
 certificate_sender = CertificateSender.new(mail_configs, SUBJECT)
 processor = BulkProcessor.new(certificate_sender, :limit => 0, :sleep_time => 0)
 
-parser = CSVParser.new(ARGV[0])
+csv_filepath = ARGV[0]
+csv_content = File.open(csv_filepath, 'r') {|f| f.read }
+parser = CSVParser.new(csv_content)
 
 Attendee.conference_name = certificate['event_short_name']
 Attendee.svg_model = File.read(ARGV[1])

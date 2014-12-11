@@ -4,10 +4,10 @@ require 'forwardable'
 
 class CSVParser
   extend Forwardable
-  def_delegators :@csv, :map, :select
+  def_delegators :@csv, :map, :select, :reject
 
-  def initialize(path, has_headers = true)
-    @csv = CSV::parse(File.open(path, 'r') {|f| f.read })
+  def initialize(content, has_headers = true)
+    @csv = CSV::parse(content)
     @csv.shift if has_headers
   end
 end
