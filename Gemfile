@@ -23,3 +23,7 @@ group :development, :test do
   gem 'terminal-notifier-guard', require: darwin_only('terminal-notifier-guard')
   gem 'libnotify', require: linux_only('rb-inotify')
 end
+
+group :test do
+  gem 'codeclimate-test-reporter', require: nil
+end
