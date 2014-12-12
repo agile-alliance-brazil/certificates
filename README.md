@@ -6,7 +6,7 @@ This is a small helper script to generate and send attendees a certificate PDF b
 Prerequisite
 ============
 
-In order to run this script you need [ruby 1.9.3](http://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p551.tar.gz) installed and [bundler](http://bundler.io/).
+In order to run this script you need [ruby 2.1.5+](http://www.ruby-lang.org/) installed and [bundler](http://bundler.io/).
 
 How to Use
 ==========
