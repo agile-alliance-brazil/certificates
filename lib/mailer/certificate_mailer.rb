@@ -1,6 +1,5 @@
 #encoding: UTF-8
 require 'action_mailer'
-require_relative './dry_run_interceptor.rb'
 
 class CertificateMailer < ActionMailer::Base
   def certificate_to(sender)
@@ -12,8 +11,5 @@ class CertificateMailer < ActionMailer::Base
       subject: sender.subject) do |format|
        format.text { render plain: sender.message }
     end
-  end
-  def self.dry_run!
-    Mail.register_interceptor DryRunInterceptor.new
   end
 end

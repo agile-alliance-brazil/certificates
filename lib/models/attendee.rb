@@ -37,7 +37,7 @@ class Attendee
   def generate_svg
     svg_certificate = @@svg_model.gsub(/&lt;nome_do_participante&gt;/, name)
     file_name = File.join(@@folder_path, "#{naming}.svg")
-    File.open(file_name, "w") {|f| f.write(svg_certificate)}
+    File.open(file_name, 'w') {|f| f.write(svg_certificate)}
     file_name
   end
   def naming

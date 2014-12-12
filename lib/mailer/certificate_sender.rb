@@ -4,18 +4,10 @@ require_relative './certificate_mailer.rb'
 
 class CertificateSender
   attr_reader :sender, :subject, :content_type
-  def initialize(configs, subject, content_type='application/pdf')
-    @sender = "#{configs['user']}@#{configs['domain']}"
-    ActionMailer::Base.smtp_settings = {
-      address: configs['smtp_server'],
-      port: configs['smtp_port'] || "587",
-      domain: configs['domain'],
-      authentication: :login,
-      user_name: @sender,
-      password: configs['password'],
-    }
-    @subject = subject
-    @content_type = content_type
+  def initialize(configuration)
+    @sender = configuration.email_sender
+    @subject = configuration.email_subject
+    @content_type = 'application/pdf'
   end
   def send_certificate_to(attendee)
     @attendee = attendee
