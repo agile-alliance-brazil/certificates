@@ -8,17 +8,19 @@ module Delivery
   def self.configure_deliveries(config)
     deliveries = []
     deliveries << Delivery::DryRun.new if config[:dry_run]
-    deliveries << Delivery::AWS.new(
-      config[:aws][:access_key_id],
-      config[:aws][:secret_access_key],
-      config[:aws][:server])
+    deliveries << build_aws(config[:aws])
 
     deliveries.select!{|delivery| delivery.complete?}
-    deliveries << Delivery::SMTP.new(
-      config[:smtp][:path],
-      config[:smtp][:password],
-      config[:smtp][:settings])
+    deliveries << build_smtp(config[:smtp])
 
     deliveries
+  end
+  private
+  def self.build_aws(config)
+    Delivery::AWS.new(config[:access_key_id],
+      config[:secret_access_key], config[:server])
+  end
+  def self.build_smtp(config)
+    Delivery::SMTP.new(config[:path], config[:password], config[:settings])
   end
 end
