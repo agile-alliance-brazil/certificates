@@ -24,6 +24,7 @@ group :development, :test do
   gem 'rb-fsevent', require: darwin_only('rb-fsevent')
   gem 'terminal-notifier-guard', require: darwin_only('terminal-notifier-guard')
   gem 'libnotify', require: linux_only('rb-inotify')
+  gem 'factory_girl'
 end
 
 group :test do

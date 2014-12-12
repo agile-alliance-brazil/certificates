@@ -37,6 +37,8 @@ GEM
     docile (1.1.5)
     dotenv (1.0.2)
     erubis (2.7.0)
+    factory_girl (4.5.0)
+      activesupport (>= 3.0.0)
     ffi (1.9.6)
     formatador (0.2.5)
     guard (2.10.2)
@@ -111,6 +113,7 @@ DEPENDENCIES
   codeclimate-test-reporter
   debugger
   dotenv
+  factory_girl
   guard
   guard-rspec
   json
