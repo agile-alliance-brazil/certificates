@@ -1,19 +1,17 @@
 #encoding: UTF-8
 require 'json'
 
-class SMTPSettings
-  def initialize(path)
+class Delivery::SMTP
+  def initialize(path, password, content)
     @config_path = path
-    @settings = JSON.parse(File.read(path))
-  end
-  def password=(password)
+    @settings = content || {}
     @settings['password'] = password
   end
   def complete?
-    @settings['smtp_server'] &&
+    !!(@settings['smtp_server'] &&
       @settings['user'] &&
       @settings['domain'] &&
-      @settings['password']
+      @settings['password'])
   end
   def id
     :smtp
@@ -25,7 +23,7 @@ class SMTPSettings
     message += message_for('smtp_server', 'server')
     message += message_for('user')
     message += message_for('domain')
-    message += "Missing SMTP password. Please define an environment variable with key name 'SMTP_PASSWORD' or add that entry to your .env file."
+    message += "Missing SMTP password. Please define an environment variable with key name 'SMTP_PASSWORD' or add that entry to your .env file." unless @settings['password']
     message
   end
   def to_hash
@@ -44,7 +42,11 @@ class SMTPSettings
   end
   private
   def message_for(key, human_name = key)
-    "Missing SMTP #{human_name}. Please ensure your json in #{config_path} has a key at the first level called '#{key}'." unless @settings[key]
+    if @settings[key]
+      ''
+    else
+      "Missing SMTP #{human_name}. Please ensure your json in #{config_path} has a key at the first level called '#{key}'.\n"
+    end
   end
   def config_path
     @config_path

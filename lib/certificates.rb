@@ -1,7 +1,8 @@
 #encoding: UTF-8
-require_relative('../extensions/kernel.rb')
-require_all_files_in_relative_folder('configuration')
+require_relative('./models/attendee.rb')
+require_relative('./models/csv_parser.rb')
+require_relative('./mailer/certificate_mailer.rb')
+require_relative('./mailer/certificate_sender.rb')
+require_relative('./workers/bulk_sender_worker.rb')
 require_relative('./configuration.rb')
-require_all_files_in_relative_folder('models')
-require_all_files_in_relative_folder('mailer')
-require_all_files_in_relative_folder('workers')
+require_relative('./delivery.rb')

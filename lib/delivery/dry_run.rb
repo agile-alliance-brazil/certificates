@@ -1,7 +1,7 @@
 #encoding: UTF-8
-require_relative './dry_run_interceptor.rb'
+require_relative './dry_run/dry_run_interceptor.rb'
 
-class DryRunSettings
+class Delivery::DryRun
   def initialize
   end
   def complete?

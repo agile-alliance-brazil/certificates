@@ -1,14 +1,14 @@
 #encoding: UTF-8
 require 'aws/ses'
 
-class AWSSettings
-  def initialize(key_id, secret, server)
+class Delivery::AWS
+  def initialize(key_id, secret, server = nil)
     @key_id = key_id
     @secret = secret
     @server = server
   end
   def complete?
-    @key_id && @secret
+    !!(@key_id && @secret)
   end
   def error_messages
     return nil if complete?

@@ -7,7 +7,7 @@ require_relative './certificates.rb'
 configuration = nil
 begin
   configuration = Configuration.new(ARGV)
-rescue => e
+rescue ConfigurationError => e
   puts e.message
   exit(1)
 end
