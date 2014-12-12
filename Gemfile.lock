@@ -20,6 +20,11 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    aws-ses (0.6.0)
+      builder
+      mail (> 2.2.5)
+      mime-types
+      xml-simple
     builder (3.2.2)
     byebug (3.5.1)
       columnize (~> 0.8)
@@ -103,12 +108,14 @@ GEM
       hitimes
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    xml-simple (1.1.4)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   actionmailer (= 4.1.8)
+  aws-ses
   byebug
   codeclimate-test-reporter
   dotenv

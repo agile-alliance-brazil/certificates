@@ -14,8 +14,7 @@ Dotenv.load
 
 require_relative './certificates.rb'
 
-
-required_env_variables = ['INKSCAPE_PATH', 'PASSWORD']
+required_env_variables = ['INKSCAPE_PATH', 'SMTP_PASSWORD']
 
 env_path = File.expand_path('../.env', File.dirname(__FILE__))
 unless File.exists?(env_path)
@@ -29,10 +28,16 @@ end
 missing_variables = required_env_variables.select{|variable| ENV[variable].nil?}
 mail_configs = JSON.parse(File.read(File.expand_path('../config/smtp.json', File.dirname(__FILE__))))
 
+if(ENV['AWS_ACCESS_KEY_ID'] && ENV['AWS_SECRET_ACCESS_KEY'])
+  require 'action_mailer'
+  ActionMailer::Base.delivery_method = :ses
+  missing_variables.reject{|variable| variable == 'SMTP_PASSWORD'}
+end
+
 dry_run = ARGV.size > 2 && ARGV[2]=="--dry-run"
 if dry_run
   CertificateMailer.dry_run!
-  missing_variables.reject{|variable| variable == 'PASSWORD'}
+  missing_variables.reject{|variable| variable == 'SMTP_PASSWORD'}
 end
 
 unless missing_variables.empty?
@@ -56,7 +61,7 @@ Organização da #{certificate['event']}
 CERTIFICATE_FOLDER_PATH = File.expand_path("../certificates/", File.dirname(__FILE__))
 FileUtils.mkdir_p CERTIFICATE_FOLDER_PATH
 
-mail_configs['password'] = ENV['PASSWORD'] unless dry_run
+mail_configs['password'] = ENV['SMTP_PASSWORD'] unless dry_run
 certificate_sender = CertificateSender.new(mail_configs, SUBJECT)
 processor = BulkProcessor.new(certificate_sender, :limit => 0, :sleep_time => 0)
 
