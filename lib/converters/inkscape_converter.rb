@@ -1,9 +1,9 @@
 #encoding: UTF-8
-class SVGToPDFConverter
+class InkscapeConverter
   def initialize(inkscape_path)
     @inkscape_path = inkscape_path
   end
-  def convert(svg)
+  def convert_to_pdf(svg)
     svg_file = Tempfile.new('temporary.svg')
     svg_file.write(svg)
     svg_file.close
