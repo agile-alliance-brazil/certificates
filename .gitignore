@@ -39,6 +39,6 @@ build/
 **/.DS_Store
 certificates/
 config/*.json
-*.csv
-*.svg
+/*.csv
+/*.svg
 *.pdf
