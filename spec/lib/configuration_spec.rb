@@ -23,7 +23,7 @@ describe Configuration do
         'next_location' => 'Knowhere',
         'type' => 'participant'
       },
-      certificates_folder_path: '/path/to/certificates/',
+      cache_folder_path: '/path/to/certificates/',
       help: 'help!'
     }
   }
@@ -53,8 +53,8 @@ describe Configuration do
     it 'should return sender from last delivery' do
       expect(subject.email_sender).to eq('fake@fake.com')
     end
-    it 'should return certificates folder path to certificates' do
-      expect(subject.certificates_folder_path).to match('certificates')
+    it 'should return cache folder path to certificates' do
+      expect(subject.cache_folder_path).to match('certificates')
     end
     it 'should return delivery as first one' do
       delivery = double(:'complete?' => true,

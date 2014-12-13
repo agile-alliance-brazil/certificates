@@ -9,7 +9,7 @@ class Configuration
     @svg_filepath = options[:svg_filepath]
     @inkscape_path = options[:inkscape_path]
     @certificate = options[:certificate]
-    @certificates_folder_path = options[:certificates_folder_path]
+    @cache_folder_path = options[:cache_folder_path]
 
     if @csv_filepath.nil? || svg_filepath.nil?
       raise ConfigurationError.new(options[:help])
@@ -45,8 +45,8 @@ Sinceramente,
 Organização da #{certificate['event']}
 """
   end
-  def certificates_folder_path
-    @certificates_folder_path
+  def cache_folder_path
+    @cache_folder_path
   end
   def delivery
     @deliveries.first

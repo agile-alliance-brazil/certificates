@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 #encoding: UTF-8
 require 'rubygems'
-require 'fileutils'
 require 'json'
 require 'dotenv'
 require 'action_mailer'
@@ -25,7 +24,7 @@ def build_options_from(arguments)
     },
     inkscape_path: ENV['INKSCAPE_PATH'],
     certificate: safe_json_parse(options[:certificate_config_path]),
-    certificates_folder_path: options[:certificates_folder_path],
+    cache_folder_path: options[:cache_folder_path],
     help: option_parser.help
   }
 end
@@ -35,10 +34,9 @@ begin
   configuration = Configuration.new(options)
   csv_content = File.read(configuration.csv_filepath)
   svg_content = File.read(configuration.svg_filepath)
-  FileUtils.mkdir_p configuration.certificates_folder_path
-
-  configuration.delivery.install_on(ActionMailer::Base)
   
+  configuration.delivery.install_on(ActionMailer::Base)
+
   bulk_generator = BulkCertificateGenerator.new(svg_content, configuration)
   bulk_generator.perform(csv_content)
   puts bulk_generator.error_messages

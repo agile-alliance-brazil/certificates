@@ -1,9 +1,9 @@
 #encoding: UTF-8
 class Certificate
-  def initialize(attendee, pdf, path_generator)
+  def initialize(attendee, pdf, name_decorator)
     @attendee = attendee
     @pdf = pdf
-    @path_generator = path_generator
+    @name_decorator = name_decorator
   end
   def has_attachment?
     !@pdf.nil?
@@ -12,6 +12,6 @@ class Certificate
     @pdf
   end
   def filename
-    @path_generator.basename_for(@attendee)
+    @name_decorator.decorate(@attendee.name)
   end
 end
