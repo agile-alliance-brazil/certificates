@@ -33,28 +33,15 @@ end
 options = build_options_from(ARGV)
 begin
   configuration = Configuration.new(options)
+  csv_content = File.read(configuration.csv_filepath)
+  svg_content = File.read(configuration.svg_filepath)
   FileUtils.mkdir_p configuration.certificates_folder_path
 
   configuration.delivery.install_on(ActionMailer::Base)
-
-  certificate_sender = CertificateSender.new(configuration)
-  processor = BulkSenderWorker.new(certificate_sender, limit: 0, sleep_time: 0)
-
-  csv_content = File.open(configuration.csv_filepath, 'r') {|f| f.read }
-  parser = CSVParser.new(csv_content)
-
-  Attendee.conference_name = configuration.certificate['event_short_name']
-  Attendee.svg_model = File.read(configuration.svg_filepath)
-  Attendee.certificate_folder_path = configuration.certificates_folder_path
-  Attendee.base_body = configuration.email_generic_body
-  Attendee.inkscape_path = configuration.inkscape_path
-
-  attendees = parser.select{|row| row[0].blank?}.
-    map{|row| Attendee.new([row[1], row[2]], row[3])}
-
-  processor.perform(attendees)
-
-  puts processor.error_messages
+  
+  bulk_generator = BulkCertificateGenerator.new(svg_content, configuration)
+  bulk_generator.perform(csv_content)
+  puts bulk_generator.error_messages
 rescue ConfigurationError => e
   puts e.message
   exit(1)

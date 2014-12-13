@@ -6,12 +6,12 @@ describe CertificateMailer do
   let(:sender){
     sender = double("Sender")
     allow(sender).to receive(:has_attachment?).and_return(true)
-    allow(sender).to receive(:filename).and_return('path/to/myfile.txt')
+    allow(sender).to receive(:basename).and_return('myfile.txt')
     allow(sender).to receive(:certificate).and_return('certificate content')
     allow(sender).to receive(:recipient).and_return('recipient@domain.com')
     allow(sender).to receive(:sender).and_return('sender@otherdomain.com')
     allow(sender).to receive(:subject).and_return('Email Subject')
-    allow(sender).to receive(:message).and_return('Email Body')
+    allow(sender).to receive(:text).and_return('Email Body')
     sender
   }
   before do
@@ -44,7 +44,7 @@ describe CertificateMailer do
     subject.certificate_to(sender)
   end
   it 'should add email body accordingly' do
-    expect(subject).to receive(:render).with(plain: sender.message)
+    expect(subject).to receive(:render).with(plain: sender.text)
     
     subject.certificate_to(sender)
   end

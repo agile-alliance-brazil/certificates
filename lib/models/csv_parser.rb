@@ -4,7 +4,7 @@ require 'forwardable'
 
 class CSVParser
   extend Forwardable
-  def_delegators :@csv, :map, :select, :reject
+  def_delegators :@csv, :map, :select
 
   def initialize(content, has_headers = true)
     @csv = CSV::parse(content)

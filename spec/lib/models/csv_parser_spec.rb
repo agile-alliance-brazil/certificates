@@ -10,4 +10,8 @@ describe CSVParser do
     parser = CSVParser.new("data,inline\none,two\n", false)
     expect(parser.select{|r| true}.size).to eq(2)
   end
+  it 'should allow to map data' do
+    parser = CSVParser.new("data,inline\none,two\n", true)
+    expect(parser.map{|r| [1, 2]}).to eq([[1, 2]])
+  end
 end

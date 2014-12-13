@@ -1,15 +1,21 @@
 #encoding: UTF-8
+require_relative '../mailer/certificate_mailer.rb'
+
 class BulkSenderWorker
   PROCESSING_INTERVAL = 5
-  def initialize(certificate_sender, options = {})
+  def initialize(generator, factory, options = {})
     @errors = []
-    @certificate_sender = certificate_sender
+    @generator = generator
+    @factory = factory
     @options = options
   end
   def perform(attendees)
+    @errors = []
     attendees.each do |attendee|
       begin
-        @certificate_sender.send_certificate_to(attendee)
+        certificate = @generator.generate_certificate_for(attendee)
+        mailed_certificate = @factory.build_for(attendee, certificate)
+        CertificateMailer.certificate_to(mailed_certificate).deliver
         sleep(PROCESSING_INTERVAL)
       rescue Exception => e
         STDERR.puts "Erro ao enviar certificado para \"#{attendee.name}\" <#{attendee.email}>."
