@@ -4,6 +4,7 @@ class CertificateOptionParser
     @dry_run = false
     @certificate_path = File.expand_path('../../config/certificate.json', File.dirname(__FILE__))
     @smtp_settings_path = File.expand_path('../../config/smtp.json', File.dirname(__FILE__))
+    @certificates_folder_path = File.expand_path('../../certificates/', File.dirname(__FILE__))
     @parser = OptionParser.new{ |opts| options_block.call(opts) }
   end
 
@@ -13,7 +14,8 @@ class CertificateOptionParser
     {
       dry_run: @dry_run,
       certificate_config_path: @certificate_path,
-      smtp_settings_path: @smtp_settings_path
+      smtp_settings_path: @smtp_settings_path,
+      certificates_folder_path: @certificates_folder_path
     }
   end
   def help

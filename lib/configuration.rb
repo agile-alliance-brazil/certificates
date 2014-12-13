@@ -11,22 +11,22 @@ class Configuration
     option_parser = CertificateOptionParser.new
     options = option_parser.parse!(arguments)
 
-    if arguments.size < 2
-      raise ConfigurationError.new(option_parser.help)
-    end
-
-    @csv_filepath = arguments[0]
-    @svg_filepath = arguments[1]
     @deliveries = Delivery.configure_deliveries(
       dry_run: options[:dry_run],
       smtp: {path: options[:smtp_settings_path], password: ENV['SMTP_PASSWORD'], settings: JSON.parse(File.read(options[:smtp_settings_path]))},
       aws: {access_key_id: ENV['AWS_ACCESS_KEY_ID'], secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'], server: ENV['AWS_SERVER']}
     )
-    @certificate = JSON.parse(File.read(options[:certificate_config_path]))
 
-    unless @deliveries.first.complete?
+    if arguments.size < 2
+      raise ConfigurationError.new(option_parser.help)
+    elsif !@deliveries.first.complete?
       raise ConfigurationError.new(@deliveries.first.error_messages)
     end
+
+    @csv_filepath = arguments[0]
+    @svg_filepath = arguments[1]
+    @certificate = JSON.parse(File.read(options[:certificate_config_path]))
+    @certificates_folder_path = options[:certificates_folder_path]
   end
   def csv_filepath
     @csv_filepath
@@ -47,7 +47,7 @@ class Configuration
   def email_subject
     "Certificado de #{certificate['type']} da #{certificate['event']}"
   end
-  def generic_email_body
+  def email_generic_body
     """Foi um grande prazer contar com sua presença na #{certificate['event']}.
 Segue em anexo o seu certificado de #{certificate['type']}.
 Esperamos encontrá-lo novamente na #{certificate['next_event']} em #{certificate['next_location']}.
@@ -57,7 +57,7 @@ Organização da #{certificate['event']}
 """
   end
   def certificates_folder_path
-    File.expand_path("../certificates/", File.dirname(__FILE__))
+    @certificates_folder_path
   end
   def delivery
     @deliveries.first

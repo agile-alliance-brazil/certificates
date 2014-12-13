@@ -25,7 +25,7 @@ parser = CSVParser.new(csv_content)
 Attendee.conference_name = configuration.certificate['event_short_name']
 Attendee.svg_model = File.read(configuration.svg_filepath)
 Attendee.certificate_folder_path = configuration.certificates_folder_path
-Attendee.base_body = configuration.generic_email_body
+Attendee.base_body = configuration.email_generic_body
 Attendee.inkscape_path = configuration.inkscape_path
 
 attendees = parser.select{|row| row[0].blank?}.
