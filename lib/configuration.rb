@@ -1,32 +1,21 @@
 #encoding: UTF-8
-require 'optparse'
-require 'dotenv'
-require 'json'
 require_relative './configuration/configuration_error.rb'
-require_relative './configuration/certificate_option_parser.rb'
+require_relative './delivery.rb'
 
 class Configuration
-  def initialize(arguments)
-    Dotenv.load
-    option_parser = CertificateOptionParser.new
-    options = option_parser.parse!(arguments)
+  def initialize(options)
+    @deliveries = Delivery.configure_deliveries(options[:deliveries])
+    @csv_filepath = options[:csv_filepath]
+    @svg_filepath = options[:svg_filepath]
+    @inkscape_path = options[:inkscape_path]
+    @certificate = options[:certificate]
+    @certificates_folder_path = options[:certificates_folder_path]
 
-    @deliveries = Delivery.configure_deliveries(
-      dry_run: options[:dry_run],
-      smtp: {path: options[:smtp_settings_path], password: ENV['SMTP_PASSWORD'], settings: JSON.parse(File.read(options[:smtp_settings_path]))},
-      aws: {access_key_id: ENV['AWS_ACCESS_KEY_ID'], secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'], server: ENV['AWS_SERVER']}
-    )
-
-    if arguments.size < 2
-      raise ConfigurationError.new(option_parser.help)
+    if @csv_filepath.nil? || svg_filepath.nil?
+      raise ConfigurationError.new(options[:help])
     elsif !@deliveries.first.complete?
       raise ConfigurationError.new(@deliveries.first.error_messages)
     end
-
-    @csv_filepath = arguments[0]
-    @svg_filepath = arguments[1]
-    @certificate = JSON.parse(File.read(options[:certificate_config_path]))
-    @certificates_folder_path = options[:certificates_folder_path]
   end
   def csv_filepath
     @csv_filepath
@@ -35,7 +24,7 @@ class Configuration
     @svg_filepath
   end
   def inkscape_path
-    ENV['INKSCAPE_PATH']
+    @inkscape_path
   end
   def certificate
     @certificate

@@ -2,48 +2,56 @@
 require_relative '../spec_helper.rb'
 
 describe Configuration do
-  before do
-    allow(File).to receive(:read).and_call_original
-    allow(File).to receive(:read).with(match(/json/)).and_return("{}")
+  let(:full_options) {
+    {
+      csv_filepath: '/path/to/csv-filename\.csv',
+      svg_filepath: '/path/to/svg-model-filename\.svg',
+      deliveries: {
+        dry_run: false,
+        smtp: {path: '/path/to/smtp.json', password: 'password', settings: {
+          'user' => 'fake',
+          'domain' => 'fake.com',
+          'smtp_server' => 'smtp.fake.com'
+        }},
+        aws: {access_key_id: 'key', secret_access_key: 'secret', server: 'server'}
+      },
+      inkscape_path: '/path/to/inkscape',
+      certificates: {
+        'event' => 'Event Name 20xx',
+        'event_short_name' => 'EN20xx',
+        'next_event' => 'EN20xy',
+        'next_location' => 'Knowhere',
+        'type' => 'participant'
+      },
+      certificates_folder_path: '/path/to/certificates/',
+      help: 'help!'
+    }
+  }
+  it 'should raise exception with help message without csv filepath' do
+    expect{ Configuration.new(full_options.except(:csv_filepath)) }.
+      to raise_error(ConfigurationError, 'help!')
   end
-  it 'should raise exception with no arguments' do
-    expect{ Configuration.new([]) }.
-      to raise_error(ConfigurationError, /csv-filename\.csv/)
+  it 'should raise exception with help message without svg filepath' do
+    expect{ Configuration.new(full_options.except(:svg_filepath)) }.
+      to raise_error(ConfigurationError, 'help!')
   end
-  it 'should raise exception with one argument' do
-    expect{ Configuration.new(['csv']) }.
-      to raise_error(ConfigurationError, /svg-model-filename\.svg/)
-  end
-  it 'should raise exception if no deliveries are complete' do
-    expect(Delivery).to receive(:configure_deliveries).
-      and_return([double(:'complete?' => false, error_messages: 'message')])
-    
-    expect{ Configuration.new(['csv', 'svg']) }.
-      to raise_error(ConfigurationError, 'message')
+  it 'should raise exception if smtp deliveries are incomplete' do
+    expect{ Configuration.new(full_options.merge({deliveries: {smtp: {}}})) }.
+      to raise_error(ConfigurationError, /SMTP server configuration/)
   end
   describe 'valid' do
-    subject{ Configuration.new(['csv', 'svg']) }
+    subject{ Configuration.new(full_options) }
     it 'should return csv_filepath from arguments' do
-      expect(subject.csv_filepath).to eq('csv')
+      expect(subject.csv_filepath).to eq(full_options[:csv_filepath])
     end
     it 'should return svg_filepath from arguments' do
-      expect(subject.svg_filepath).to eq('svg')
+      expect(subject.svg_filepath).to eq(full_options[:svg_filepath])
     end
     it 'should return inkscape_path from environment' do
-      allow(ENV).to receive(:[]).and_call_original
-      allow(ENV).to receive(:[]).with('INKSCAPE_PATH').and_return(:path)
-
-      expect(subject.inkscape_path).to eq(:path)
+      expect(subject.inkscape_path).to eq(full_options[:inkscape_path])
     end
     it 'should return sender from last delivery' do
-      expect(Delivery).to receive(:configure_deliveries).
-        and_return([
-          double(:'complete?' => true, to_hash: {
-            user_name: 'test@somewhere.com'
-          })
-        ])
-
-      expect(subject.email_sender).to eq('test@somewhere.com')
+      expect(subject.email_sender).to eq('fake@fake.com')
     end
     it 'should return certificates folder path to certificates' do
       expect(subject.certificates_folder_path).to match('certificates')

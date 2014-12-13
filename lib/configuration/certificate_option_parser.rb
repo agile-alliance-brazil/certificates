@@ -1,4 +1,6 @@
 #encoding: UTF-8
+require 'optparse'
+
 class CertificateOptionParser
   def initialize
     @dry_run = false

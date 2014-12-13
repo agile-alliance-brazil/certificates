@@ -57,6 +57,14 @@ describe Delivery do
 
       expect(deliveries.first).to be_instance_of(Delivery::SMTP)
     end
+    it 'should have smtp if dry_run is false and AWS omitted' do
+      deliveries = Delivery.configure_deliveries(
+        dry_run: false,
+        smtp: {}
+      )
+
+      expect(deliveries.first).to be_instance_of(Delivery::SMTP)
+    end
     it 'should build AWS with access_key_id, secret_access_key and server' do
       expect(Delivery::AWS).to receive(:new).with('id', 'secret', 'server').and_call_original
 

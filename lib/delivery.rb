@@ -8,7 +8,7 @@ module Delivery
   def self.configure_deliveries(config)
     deliveries = []
     deliveries << Delivery::DryRun.new if config[:dry_run]
-    deliveries << build_aws(config[:aws])
+    deliveries << build_aws(config[:aws]) if config[:aws]
 
     deliveries.select!{|delivery| delivery.complete?}
     deliveries << build_smtp(config[:smtp])
