@@ -15,7 +15,7 @@ describe CertificateOptionParser do
   it 'should provide certificates folder path on parse!' do
     options = subject.parse!([])
     expect(options).to include(:certificates_folder_path)
-    expect(options[:certificates_folder_path]).to match('certificates/')
+    expect(options[:certificates_folder_path]).to match('certificates')
   end
   it 'should provide dry run as false on parse! without --dry-run' do
     options = subject.parse!([])

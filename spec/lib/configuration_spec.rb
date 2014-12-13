@@ -2,6 +2,10 @@
 require_relative '../spec_helper.rb'
 
 describe Configuration do
+  before do
+    allow(File).to receive(:read).and_call_original
+    allow(File).to receive(:read).with(match(/json/)).and_return("{}")
+  end
   it 'should raise exception with no arguments' do
     expect{ Configuration.new([]) }.
       to raise_error(ConfigurationError, /csv-filename\.csv/)
@@ -42,7 +46,7 @@ describe Configuration do
       expect(subject.email_sender).to eq('test@somewhere.com')
     end
     it 'should return certificates folder path to certificates' do
-      expect(subject.certificates_folder_path).to match('certificates/')
+      expect(subject.certificates_folder_path).to match('certificates')
     end
     it 'should return delivery as first one' do
       delivery = double(:'complete?' => true,
