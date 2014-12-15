@@ -5,9 +5,7 @@ require_relative '../version.rb'
 class CertificateOptionParser
   def initialize
     @dry_run = false
-    @certificate_path = File.expand_path('../../config/certificate.json', File.dirname(__FILE__))
-    @smtp_settings_path = File.expand_path('../../config/smtp.json', File.dirname(__FILE__))
-    @cache_folder_path = File.expand_path('../../certificates/', File.dirname(__FILE__))
+    @cache_folder_path = File.expand_path('./certificates/')
     @parser = OptionParser.new{ |opts| options_block.call(opts) }
   end
 
@@ -16,8 +14,7 @@ class CertificateOptionParser
 
     {
       dry_run: @dry_run,
-      certificate_config_path: @certificate_path,
-      smtp_settings_path: @smtp_settings_path,
+      filename_prefix: @filename_prefix,
       cache_folder_path: @cache_folder_path
     }
   end
@@ -27,7 +24,11 @@ class CertificateOptionParser
   private
   def options_block
     -> (opts) {
-      opts.banner = "Usage: bundle exec ruby #{$0} csv-filename.csv svg-model-filename.svg [options]"
+      opts.banner = "Usage: bundle exec ruby #{$0} data_folder [options]\n\n" +
+        "The data folder should contain 3 files:\n" +
+        "* data.csv -- A CSV file containing the attendee's list with their names, emails and presence.\n" +
+        "* model.svg -- An SVG model file which will be interpreted to generate the PDF for each attendee.\n" +
+        "* email.md.erb -- A Markdown file with ERB tags. The tags will be interpreted with an attendee model. The generated markdown will compose the email's body in plain text, it's HTML version interpreted by Markdown and the email subject as the first line of that body.\n"
 
       opts.separator ""
       opts.separator "Specific options:"
@@ -39,6 +40,11 @@ class CertificateOptionParser
         elsif !path.nil?
           @cache_folder_path = path
         end
+      end
+
+      opts.on("--prefix [PREFIX]",
+        "Generates PDF filenames with the given prefix. If prefix is 'Certificado-AB2014-', the PDF filename will be 'Certificado-AB2014-AttendeeName.pdf' for an attendee named 'Attendee Name'. Defaults to empty therefore generating 'AttendeeName.pdf'.") do |prefix|
+        @filename_prefix = prefix
       end
 
       opts.on("--dry-run",

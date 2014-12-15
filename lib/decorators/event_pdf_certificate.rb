@@ -6,10 +6,9 @@ require_relative './multi.rb'
 
 module Decorators
   class EventPdfCertificate
-    def initialize(event_short_name = nil)
+    def initialize(prefix = nil)
       decorators = [SpaceCleaner.new]
-      decorators << PrependText.new("#{event_short_name}-") if event_short_name
-      decorators << PrependText.new('Certificado-')
+      decorators << PrependText.new(prefix) if prefix
       decorators << AppendText.new('.pdf')
       @decorator = Multi.new(decorators)
     end

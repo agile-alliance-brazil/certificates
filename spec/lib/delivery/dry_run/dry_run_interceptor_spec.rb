@@ -10,7 +10,8 @@ describe DryRunInterceptor do
   let(:fake_sender) {'sender@fake.com'}
   let(:fake_recipient) {'recipient@fake.com'}
   let(:fake_subject) {'Fake subject'}
-  let(:fake_body_content) {'Fake plain text body content'}
+  let(:fake_body_text_content) {'Fake plain text body content'}
+  let(:fake_body_html_content) {'<p>Fake plain text body content</p>'}
   let(:fake_filename) {'filename.txt'}
   let(:fake_attachment_content) {'Fake attachment content'}
   let(:pdf_content_type) {'application/pdf'}
@@ -19,7 +20,8 @@ describe DryRunInterceptor do
     allow(message).to receive(:from).and_return([fake_sender])
     allow(message).to receive(:to).and_return([fake_recipient])
     allow(message).to receive(:subject).and_return(fake_subject)
-    allow(message).to receive(:text_part).and_return(fake_body_content)
+    allow(message).to receive(:text_part).and_return(fake_body_text_content)
+    allow(message).to receive(:html_part).and_return(fake_body_html_content)
     allow(message).to receive(:has_attachments?).and_return(true)
     allow(message).to receive(:attachments).and_return([
       double(filename: fake_filename,
@@ -52,7 +54,12 @@ describe DryRunInterceptor do
   it 'should log text body' do
     @interceptor.delivering_email(fake_message)
 
-    expect(@output.string).to match(fake_body_content)
+    expect(@output.string).to match(fake_body_text_content)
+  end
+  it 'should log html body' do
+    @interceptor.delivering_email(fake_message)
+
+    expect(@output.string).to match(fake_body_html_content)
   end
   it 'should log attachment file name' do
     @interceptor.delivering_email(fake_message)

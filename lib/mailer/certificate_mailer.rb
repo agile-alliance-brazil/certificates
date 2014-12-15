@@ -9,7 +9,7 @@ class CertificateMailer < ActionMailer::Base
 
     mail(to: mailed_certificate.recipient, from: mailed_certificate.sender,
       subject: mailed_certificate.subject) do |format|
-        # format.html { render html: mailed_certificate.html }
+        format.html { render html: mailed_certificate.html.html_safe }
         format.text { render plain: mailed_certificate.text }
     end
   end

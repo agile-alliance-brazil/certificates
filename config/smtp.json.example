@@ -1,7 +1,0 @@
-{
-  "user": "your-user",
-  "domain": "yourconf.org",
-  "smtp_server": "mail.yourconf.org",
-  "smtp_port": 587,
-  "authentication": 'plain'
-}

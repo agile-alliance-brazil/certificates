@@ -15,7 +15,7 @@ describe Certificate do
       expect(subject.pdf).to eq('data')
     end
     it 'should provide filename via path_generator' do
-      expect(subject.filename).to eq('Certificado-JohnDoe.pdf')
+      expect(subject.filename).to eq('JohnDoe.pdf')
     end
   end
 end

@@ -15,6 +15,7 @@ gem 'rake'
 gem 'actionmailer', '4.1.8'
 gem 'json'
 gem 'aws-ses', require: 'aws/ses'
+gem 'redcarpet'
 
 group :development, :test do
   gem 'rspec'

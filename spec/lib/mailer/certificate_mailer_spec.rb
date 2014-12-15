@@ -12,6 +12,7 @@ describe CertificateMailer do
     allow(sender).to receive(:sender).and_return('sender@otherdomain.com')
     allow(sender).to receive(:subject).and_return('Email Subject')
     allow(sender).to receive(:text).and_return('Email Body')
+    allow(sender).to receive(:html).and_return('<p>Email Body</p>')
     sender
   }
   before do
@@ -45,6 +46,7 @@ describe CertificateMailer do
   end
   it 'should add email body accordingly' do
     expect(subject).to receive(:render).with(plain: sender.text)
+    expect(subject).to receive(:render).with(html: sender.html)
     
     subject.certificate_to(sender)
   end

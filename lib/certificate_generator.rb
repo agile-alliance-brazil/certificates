@@ -1,18 +1,17 @@
 #encoding: UTF-8
 require_relative './models/certificate_model.rb'
 require_relative './converters/inkscape_converter.rb'
-require_relative './decorators/event_pdf_certificate.rb'
 require_relative './cache_strategy.rb'
+require_relative './decorators/event_pdf_certificate.rb'
 require_relative './models/certificate.rb'
 
 class CertificateGenerator
-  def initialize(configuration, svg)
+  def initialize(svg, inkscape, cache_path, filename_prefix)
     @model = CertificateModel.new(svg)
-    @converter = InkscapeConverter.new(configuration.inkscape_path)
-    @cache = CacheStrategy.build_from(configuration)
+    @converter = InkscapeConverter.new(inkscape)
+    @cache = CacheStrategy.build_from(cache_path)
 
-    event_name = configuration.certificate['event_short_name']
-    @name_decorator = Decorators::EventPdfCertificate.new(event_name)
+    @name_decorator = Decorators::EventPdfCertificate.new(filename_prefix)
   end
   def generate_certificate_for(attendee)
     attendee_svg = @model.svg_for(attendee)

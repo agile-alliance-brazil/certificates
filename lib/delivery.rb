@@ -1,8 +1,8 @@
 #encoding: UTF-8
 module Delivery; end
-require_relative 'delivery/aws.rb'
-require_relative 'delivery/smtp.rb'
 require_relative 'delivery/dry_run.rb'
+require_relative 'delivery/smtp.rb'
+require_relative 'delivery/aws.rb'
 
 module Delivery
   def self.configure_deliveries(config)
@@ -11,7 +11,7 @@ module Delivery
     deliveries << build_aws(config[:aws]) if config[:aws]
 
     deliveries.select!{|delivery| delivery.complete?}
-    deliveries << build_smtp(config[:smtp])
+    deliveries << Delivery::SMTP.new(config[:smtp])
 
     deliveries
   end
@@ -19,8 +19,5 @@ module Delivery
   def self.build_aws(config)
     Delivery::AWS.new(config[:access_key_id],
       config[:secret_access_key], config[:server])
-  end
-  def self.build_smtp(config)
-    Delivery::SMTP.new(config[:path], config[:password], config[:settings])
   end
 end

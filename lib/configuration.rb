@@ -1,52 +1,27 @@
 #encoding: UTF-8
-require_relative './configuration/configuration_error.rb'
 require_relative './delivery.rb'
+require_relative './configuration/configuration_error.rb'
 
 class Configuration
+  attr_reader :filename_prefix, :email_sender, :csv_filepath,
+    :svg_filepath, :body_template_path, :inkscape_path, :cache_folder_path
   def initialize(options)
+    @filename_prefix = options[:filename_prefix]
     @deliveries = Delivery.configure_deliveries(options[:deliveries])
-    @csv_filepath = options[:csv_filepath]
-    @svg_filepath = options[:svg_filepath]
+    @email_sender = options[:deliveries][:sender]
+    @csv_filepath = File.expand_path('data.csv', options[:data_folder])
+    @svg_filepath = File.expand_path('model.svg', options[:data_folder])
+    @body_template_path = File.expand_path('email.md.erb', options[:data_folder])
     @inkscape_path = options[:inkscape_path]
-    @certificate = options[:certificate]
     @cache_folder_path = options[:cache_folder_path]
 
-    if @csv_filepath.nil? || svg_filepath.nil?
+    if options[:data_folder].nil?
       raise ConfigurationError.new(options[:help])
+    elsif @email_sender.nil?
+      raise ConfigurationError.new("Missing SENDER information. Please define an environment variable with key name 'SENDER' or add that entry to your .env file.")
     elsif !@deliveries.first.complete?
       raise ConfigurationError.new(@deliveries.first.error_messages)
     end
-  end
-  def csv_filepath
-    @csv_filepath
-  end
-  def svg_filepath
-    @svg_filepath
-  end
-  def inkscape_path
-    @inkscape_path
-  end
-  def certificate
-    @certificate
-  end
-  def email_sender
-    #TODO Get that some other way
-    @deliveries.last.to_hash[:user_name]
-  end
-  def email_subject
-    "Certificado de #{certificate['type']} da #{certificate['event']}"
-  end
-  def email_generic_body
-    """Foi um grande prazer contar com sua presença na #{certificate['event']}.
-Segue em anexo o seu certificado de #{certificate['type']}.
-Esperamos encontrá-lo novamente na #{certificate['next_event']} em #{certificate['next_location']}.
-
-Sinceramente,
-Organização da #{certificate['event']}
-"""
-  end
-  def cache_folder_path
-    @cache_folder_path
   end
   def delivery
     @deliveries.first

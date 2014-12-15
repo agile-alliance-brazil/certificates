@@ -2,8 +2,7 @@
 require 'fileutils'
 
 module CacheStrategy
-  def self.build_from(configuration)
-    path = configuration.cache_folder_path
+  def self.build_from(path = nil)
     if path
       PDFCache.new(path)
     else

@@ -5,6 +5,7 @@ describe Delivery do
   describe 'configure_deliveries' do
     it 'should have dry_run as first option if dry_run is true' do
       deliveries = Delivery.configure_deliveries(
+        sender: 'fake@fake.com',
         dry_run: true,
         aws: {},
         smtp: {}
@@ -14,6 +15,7 @@ describe Delivery do
     end
     it 'should have aws if dry_run is false but all AWS settings are available' do
       deliveries = Delivery.configure_deliveries(
+        sender: 'fake@fake.com',
         dry_run: false,
         aws: {access_key_id: 'id', secret_access_key: 'key'},
         smtp: {}
@@ -23,6 +25,7 @@ describe Delivery do
     end
     it 'should have smtp as last if dry_run is true' do
       deliveries = Delivery.configure_deliveries(
+        sender: 'fake@fake.com',
         dry_run: true,
         aws: {},
         smtp: {}
@@ -32,6 +35,7 @@ describe Delivery do
     end
     it 'should have smtp as last if dry_run is false but AWS is complete' do
       deliveries = Delivery.configure_deliveries(
+        sender: 'fake@fake.com',
         dry_run: false,
         aws: {access_key_id: 'id', secret_access_key: 'key'},
         smtp: {}
@@ -41,6 +45,7 @@ describe Delivery do
     end
     it 'should have smtp as last if dry_run is true and AWS is complete' do
       deliveries = Delivery.configure_deliveries(
+        sender: 'fake@fake.com',
         dry_run: true,
         aws: {access_key_id: 'id', secret_access_key: 'key'},
         smtp: {}
@@ -50,6 +55,7 @@ describe Delivery do
     end
     it 'should have smtp if dry_run is false and AWS incomplete' do
       deliveries = Delivery.configure_deliveries(
+        sender: 'fake@fake.com',
         dry_run: false,
         aws: {},
         smtp: {}
@@ -59,6 +65,7 @@ describe Delivery do
     end
     it 'should have smtp if dry_run is false and AWS omitted' do
       deliveries = Delivery.configure_deliveries(
+        sender: 'fake@fake.com',
         dry_run: false,
         smtp: {}
       )
@@ -69,18 +76,20 @@ describe Delivery do
       expect(Delivery::AWS).to receive(:new).with('id', 'secret', 'server').and_call_original
 
       Delivery.configure_deliveries(
+        sender: 'fake@fake.com',
         dry_run: false,
         aws: {access_key_id: 'id', secret_access_key: 'secret', server: 'server'},
         smtp: {}
       )
     end
     it 'should build SMTP with access_key_id, secret_access_key and server' do
-      expect(Delivery::SMTP).to receive(:new).with('path', 'pass', {}).and_call_original
+      expect(Delivery::SMTP).to receive(:new).with({}).and_call_original
       
       Delivery.configure_deliveries(
+        sender: 'fake@fake.com',
         dry_run: false,
         aws: {},
-        smtp: {path: 'path', password: 'pass', settings: {}}
+        smtp: {}
       )
     end
   end

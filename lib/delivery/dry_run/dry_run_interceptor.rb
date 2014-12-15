@@ -8,6 +8,8 @@ class DryRunInterceptor
     @output.puts attachment_data(message) if message.has_attachments?
     @output.puts "O corpo seria:"
     @output.puts message.text_part
+    @output.puts "O html do corpo seria:"
+    @output.puts message.html_part
 
     message.perform_deliveries = false
   end
