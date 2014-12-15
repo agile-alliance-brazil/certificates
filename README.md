@@ -11,9 +11,7 @@ In order to run this script you need [ruby 2.1.5+](http://www.ruby-lang.org/) in
 How to Use
 ==========
 
-Ensure you created a .env file at the root of the repo copying .env.example. Add your data in there.
-
-Create a copy of each .example file without the .example extension and fill in your data.
+Ensure you created a .env file at the root of the repo copying .env.example. Add your data in there. Copy the example folder into your own (let's say "data"), change the contents to match your attendees, your certificate's svg and an email template.
 
 Then run (in the project's root folder):
 
@@ -21,7 +19,7 @@ Then run (in the project's root folder):
 bundle install
 ```
 
-Copy the example folder into your own (let's say "data"), change the contents and run:
+And:
 
 ```
 bundle exec ruby ./lib/generate_certificates.rb data --dry-run
