@@ -31,6 +31,11 @@ You can also provide a --prefix option with a prefix text for every PDF's file n
 
 Once you're happy with the results, just run the same thing without the '--dry-run' option.
 
+PDF Convertion
+==============
+
+If you want to use [Inkscape](http://www.inkscape.org) to generate your PDFs, ensure you have either INKSCAPE_PATH in your .env file or defined as an environment variable. Otherwise, we will use [prawn-svg](https://github.com/mogest/prawn-svg) to convert from SVG to PDF which may have different results than Inkscape (notably, won't convert flowRoot elements, those have to be transformed into text elements and won't have access to unix/X11 fonts).
+
 Development
 ===========
 

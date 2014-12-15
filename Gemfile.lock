@@ -72,6 +72,12 @@ GEM
     mime-types (2.4.3)
     minitest (5.4.3)
     multi_json (1.10.1)
+    pdf-core (0.4.0)
+    prawn (1.3.0)
+      pdf-core (~> 0.4.0)
+      ttfunk (~> 1.4.0)
+    prawn-svg (0.16.0)
+      prawn (>= 0.8.4)
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -107,6 +113,7 @@ GEM
     thread_safe (0.3.4)
     timers (4.0.1)
       hitimes
+    ttfunk (1.4.0)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     xml-simple (1.1.4)
@@ -125,6 +132,7 @@ DEPENDENCIES
   guard-rspec
   json
   libnotify
+  prawn-svg
   pry
   rake
   rb-fsevent

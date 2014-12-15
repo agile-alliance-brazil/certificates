@@ -1,6 +1,7 @@
 #encoding: UTF-8
 require_relative './models/certificate_model.rb'
 require_relative './converters/inkscape_converter.rb'
+require_relative './converters/prawn_converter.rb'
 require_relative './cache_strategy.rb'
 require_relative './decorators/event_pdf_certificate.rb'
 require_relative './models/certificate.rb'
@@ -8,7 +9,7 @@ require_relative './models/certificate.rb'
 class CertificateGenerator
   def initialize(svg, inkscape, cache_path, filename_prefix)
     @model = CertificateModel.new(svg)
-    @converter = InkscapeConverter.new(inkscape)
+    @converter = inkscape ? InkscapeConverter.new(inkscape) : PrawnConverter.new
     @cache = CacheStrategy.build_from(cache_path)
 
     @name_decorator = Decorators::EventPdfCertificate.new(filename_prefix)
