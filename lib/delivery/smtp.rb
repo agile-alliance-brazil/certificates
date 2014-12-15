@@ -39,7 +39,4 @@ class Delivery::SMTP
       "Missing SMTP #{key}. Please define an environment variable with key name '#{environment_key}' or add that entry to your .env file.\n"
     end
   end
-  def config_path
-    @config_path
-  end
 end
