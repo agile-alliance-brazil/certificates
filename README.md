@@ -11,6 +11,12 @@ In order to run this script you need [ruby 2.1.5+](http://www.ruby-lang.org/) in
 How to Use
 ==========
 
+Download the [project's ZIP](https://github.com/agile-alliance-brazil/certificates/archive/master.zip) or clone the project somewhere:
+
+```
+git clone https://github.com/agile-alliance-brazil/certificates.git
+```
+
 Ensure you created a .env file at the root of the repo copying .env.example. Add your data in there. Copy the example folder into your own (let's say "data"), change the contents to match your attendees, your certificate's svg and an email template.
 
 Then run (in the project's root folder):
