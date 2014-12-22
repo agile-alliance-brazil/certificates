@@ -12,7 +12,7 @@ end
 
 gem 'dotenv'
 gem 'rake'
-gem 'actionmailer', '4.1.8'
+gem 'actionmailer', '4.2.0'
 gem 'json'
 gem 'aws-ses', require: 'aws/ses'
 gem 'redcarpet'
