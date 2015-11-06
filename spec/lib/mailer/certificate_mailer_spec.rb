@@ -40,7 +40,7 @@ describe CertificateMailer do
   end
   it 'should mail with parameters' do
     expect(subject).to receive(:mail).with(to: sender.recipient,
-      from: sender.sender, subject: sender.subject)
+      from: sender.sender, bcc: 'inscricoes@agilebrazil.com', subject: sender.subject)
     
     subject.certificate_to(sender)
   end

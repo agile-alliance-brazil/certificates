@@ -13,6 +13,6 @@ describe CertificateModel do
   subject {CertificateModel.new(svg)}
   let(:attendee) { Attendee.new(['Hugo', 'Corbucci'], 'fake@domain.com') }
   it 'should replace svg tag <nome_do_participante> with attendee name' do
-    expect(subject.svg_for(attendee)).to match(/Hugo Corbucci/)
+    expect(subject.svg_for(attendee)).to match(/Hugo Corbucci/i)
   end
 end
