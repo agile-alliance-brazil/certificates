@@ -17,7 +17,7 @@ class BulkSenderWorker
       begin
         certificate = @generator.generate_certificate_for(attendee)
         mailed_certificate = MailedCertificate.new(@sender, @body_template, attendee, certificate)
-        CertificateMailer.certificate_to(mailed_certificate).deliver
+        CertificateMailer.certificate_to(mailed_certificate).deliver_now
         sleep(PROCESSING_INTERVAL)
       rescue Exception => e
         STDERR.puts "Erro ao enviar certificado para \"#{attendee.name}\" <#{attendee.email}>."

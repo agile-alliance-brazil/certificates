@@ -6,7 +6,7 @@ This is a small helper script to generate and send attendees a certificate PDF b
 Prerequisite
 ============
 
-In order to run this script you need [ruby 2.1.5+](http://www.ruby-lang.org/) installed and [bundler](http://bundler.io/).
+In order to run this script you need [ruby 2.2.2+](http://www.ruby-lang.org/) installed and [bundler](http://bundler.io/).
 
 How to Use
 ==========
@@ -25,7 +25,7 @@ Then run (in the project's root folder):
 bundle install
 ```
 
-And:
+And (assuming your data folder holds a csv file called data.csv, an svg file called model.svg and a markdown ERB file called email.md.erb):
 
 ```
 bundle exec ruby ./lib/generate_certificates.rb data --dry-run

@@ -2,7 +2,7 @@
 class Attendee
   attr_reader :name, :email
   def initialize(names, email)
-    @name = Array(names).flatten.map(&:strip).map(&:capitalize).join(' ')
+    @name = Array(names).flatten.compact.map(&:strip).map(&:capitalize).join(' ')
     @email = email
   end
 end
