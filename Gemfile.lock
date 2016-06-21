@@ -37,10 +37,10 @@ GEM
       xml-simple
     builder (3.2.2)
     byebug (9.0.5)
-    codeclimate-test-reporter (0.5.1)
+    codeclimate-test-reporter (0.5.2)
       simplecov (>= 0.7.1, < 1.0.0)
     coderay (1.1.1)
-    css_parser (1.4.1)
+    css_parser (1.4.2)
       addressable
     diff-lcs (1.2.5)
     docile (1.1.5)
