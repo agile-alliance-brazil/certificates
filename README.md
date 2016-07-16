@@ -6,7 +6,7 @@ This is a small helper script to generate and send attendees a certificate PDF b
 Prerequisite
 ============
 
-In order to run this script you need [ruby 2.2.2+](http://www.ruby-lang.org/) installed and [bundler](http://bundler.io/).
+In order to run this script you need [ruby 2.3.1+](http://www.ruby-lang.org/) installed and [bundler](http://bundler.io/).
 
 How to Use
 ==========
@@ -46,4 +46,3 @@ Development
 ===========
 
 You can start guard with ``dev.sh`` or just run all tests with ``bundle exec rake``.
-
