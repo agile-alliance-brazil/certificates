@@ -1,5 +1,8 @@
 *.gem
 *.rbc
+.rbenv-gemsets
+.ruby-version
+/.gems
 /.config
 /coverage/
 /InstalledFiles

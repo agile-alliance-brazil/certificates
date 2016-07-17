@@ -19,7 +19,7 @@ def build_options_from(arguments)
       smtp: {
         address: ENV['SMTP_SERVER'],
         port: ENV['SMTP_PORT'] || '587',
-        domain: ENV['SENDER'].try(:split, '@').try(:[], 1),
+        domain: ENV['SENDER'] && ENV['SENDER'].split('@').last,
         authentication: ENV['AUTHENTICATION'] || 'plain',
         user_name: ENV['SENDER'],
         password: ENV['SMTP_PASSWORD']
@@ -42,7 +42,7 @@ begin
   csv_content = File.read(configuration.csv_filepath)
   svg_content = File.read(configuration.svg_filepath)
   body_template = File.read(configuration.body_template_path)
-  
+
   configuration.delivery.install_on(ActionMailer::Base)
 
   generator = CertificateGenerator.new(svg_content,
