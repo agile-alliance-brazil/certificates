@@ -11,4 +11,6 @@ namespace :test do
   task ci: :spec
 end
 
+task ci: :spec
+
 task default: :'test:ci'
