@@ -6,7 +6,7 @@ This is a small helper script to generate and send attendees a certificate PDF b
 Prerequisite
 ============
 
-In order to run this script you need [ruby 2.3.1+](http://www.ruby-lang.org/) installed and [bundler](http://bundler.io/).
+In order to run this script you need [ruby 2.3.1](http://www.ruby-lang.org/).
 
 How to Use
 ==========
@@ -17,15 +17,13 @@ Download the [project's ZIP](https://github.com/agile-alliance-brazil/certificat
 git clone https://github.com/agile-alliance-brazil/certificates.git
 ```
 
-Ensure you created a .env file at the root of the repo copying .env.example. Add your data in there. Copy the example folder into your own (let's say "data"), change the contents to match your attendees, your certificate's svg and an email template.
-
-Then run (in the project's root folder):
+In the root folder, run:
 
 ```
-bundle install
+./setup.sh
 ```
 
-And (assuming your data folder holds a csv file called data.csv, an svg file called model.svg and a markdown ERB file called email.md.erb):
+This will create a .env file in that same folder. Open it and edit the values to match your needs. Copy the example folder into your own (let's say "data"), change the contents to match your attendees (in a CSV file called data.csv inside that folder), your certificate's svg (called model.svg in that folder) and an email template in markdown (called email.md.erb). Then run:
 
 ```
 bundle exec ruby ./lib/generate_certificates.rb data --dry-run
@@ -45,4 +43,4 @@ If you want to use [Inkscape](http://www.inkscape.org) to generate your PDFs, en
 Development
 ===========
 
-You can start guard with ``dev.sh`` or just run all tests with ``bundle exec rake``.
+You can start guard with ``./dev.sh`` or just run all tests with ``./setup.sh && bundle exec rake``.
