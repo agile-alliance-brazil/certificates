@@ -48,7 +48,7 @@ q
 
 BT
 45.7188 709.7005 Td
-/F1.0 40.0 Tf
+/F2.0 40.0 Tf
 [<5468697320697320666f7220>] TJ
 ET
 
@@ -61,7 +61,7 @@ q
 
 BT
 45.7188 659.7005 Td
-/F1.0 40.0 Tf
+/F2.0 40.0 Tf
 [<3c6e6f6d655f646f5f7061727469636970616e74653e>] TJ
 ET
 
@@ -77,7 +77,7 @@ q
 
 BT
 45.7188 609.7005 Td
-/F1.0 40.0 Tf
+/F2.0 40.0 Tf
 [<616e642069742077> 10 <6f726b7321>] TJ
 ET
 
@@ -101,9 +101,9 @@ endobj
 /MediaBox [0 0 612.0 792.0]
 /Contents 4 0 R
 /Resources << /ProcSet [/PDF /Text /ImageB /ImageC /ImageI]
-/ExtGState << /Tr1 6 0 R
+/Font << /F2.0 7 0 R
 >>
-/Font << /F1.0 7 0 R
+/ExtGState << /Tr1 6 0 R
 >>
 >>
 >>
