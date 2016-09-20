@@ -4,6 +4,8 @@ set -e
 
 MY_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+cd ${MY_DIR}
+
 if [[ -z `which curl` ]]; then
   echo "Please ensure the command line utility curl is installed and try again" && exit 1
 fi

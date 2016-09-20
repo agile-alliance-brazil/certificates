@@ -21,7 +21,7 @@ def build_options_from(arguments)
         port: ENV['SMTP_PORT'] || '587',
         domain: ENV['SENDER'] && ENV['SENDER'].split('@').last,
         authentication: ENV['AUTHENTICATION'] || 'plain',
-        user_name: ENV['SENDER'],
+        user_name: ENV['SMTP_USERNAME'] || ENV['SENDER'],
         password: ENV['SMTP_PASSWORD']
       },
       aws: {
