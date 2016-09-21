@@ -32,8 +32,8 @@ describe Delivery::SMTP do
       it 'should complain about missing user' do
         expect(subject.error_messages).to match('user_name')
       end
-      it 'should suggest environment variable SENDER' do
-        expect(subject.error_messages).to match('SENDER')
+      it 'should suggest environment variable SMTP_USERNAME' do
+        expect(subject.error_messages).to match('SMTP_USERNAME')
       end
     end
   end
