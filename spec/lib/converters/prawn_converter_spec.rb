@@ -7,7 +7,7 @@ describe PrawnConverter do
   it 'should convert files using pdf temp file' do
     pdf_file = double('PDF Tempfile')
     expect(Prawn::Document).to receive(:generate).
-      with(anything, margin: [0,0,0,0]).and_call_original
+      with(anything, margin: [0,0,0,0], page_size: [1052, 744]).and_call_original
 
     result = subject.convert_to_pdf(svg_data)
     expect(result).to eq(expected_pdf_data)

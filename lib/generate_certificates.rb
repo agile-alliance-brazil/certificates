@@ -48,7 +48,7 @@ begin
 
   generator = CertificateGenerator.new(svg_content,
     configuration.inkscape_path, configuration.cache_folder_path,
-    configuration.filename_pattern)
+    configuration.filename_pattern, configuration.font_paths)
 
   processor = BulkSenderWorker.new(generator, configuration.email_sender,
     body_template, limit: 0, sleep_time: 0)

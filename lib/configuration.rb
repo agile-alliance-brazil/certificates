@@ -10,6 +10,7 @@ class Configuration
     @filename_pattern = options[:filename_pattern]
     @delivery = Delivery.configure_deliveries(options[:deliveries]).first
     @email_sender = options[:deliveries][:sender]
+    @data_folder = options[:data_folder]
     @csv_filepath = File.expand_path('data.csv', options[:data_folder])
     @svg_filepath = File.expand_path('model.svg', options[:data_folder])
     @body_template_path = File.expand_path('email.md.erb', options[:data_folder])
@@ -17,6 +18,10 @@ class Configuration
     @cache_folder_path = options[:cache_folder_path]
 
     raise_error_if_incomplete(options)
+  end
+
+  def font_paths
+    Dir.glob("#{@data_folder}/*.{ttf,TTF}")
   end
 
   private

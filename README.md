@@ -49,6 +49,8 @@ PDF Convertion
 
 If you want to use [Inkscape](http://www.inkscape.org) to generate your PDFs, ensure you have either INKSCAPE_PATH in your .env file or defined as an environment variable. Otherwise, we will use [prawn-svg](https://github.com/mogest/prawn-svg) to convert from SVG to PDF which may have different results than Inkscape (notably, won't convert flowRoot elements, those have to be transformed into text elements and won't have access to unix/X11 fonts).
 
+Another important difference is that Inkscape will use your system fonts to render the PDF. Prawn won't. To compensate for that, you can drop TTF files in the folder that holds your SVG file and prawn will embed the fonts it needs from those. Note that the fonts filenames must match the font family name appended with a dash and the font style name. For example, to load 'font-family:Montserrat;font-weigth:bold;', you need to have a 'Montserrat-bold.ttf' file in the same folder as your SVG.
+
 Development
 ===========
 
