@@ -23,17 +23,26 @@ In the root folder, run:
 ./setup.sh
 ```
 
-This will create a .env file in that same folder. Open it and edit the values to match your needs. Copy the example folder into your own (let's say "data"), change the contents to match your attendees (in a CSV file called data.csv inside that folder), your certificate's svg (called model.svg in that folder) and an email template in markdown (called email.md.erb). Then run:
+This will create a .env file in that same folder. Open it and edit the values to match your needs. Copy the example folder into your own (let's say "example"), change the contents to match your attendees (in a CSV file called data.csv inside that folder), your certificate's svg (called model.svg in that folder) and an email template in markdown (called email.md.erb). Then run:
 
 ```
-bundle exec ruby ./lib/generate_certificates.rb data --dry-run
+bundle exec ruby ./lib/generate_certificates.rb example --dry-run
 ```
 
-This should generate the certificates for you and just print what action would be taken (not actually sending the emails). It'll cache the generated certificate PDFs in a folder called certificates in your current directory. Check the '--cache' option for details on that.
+This should generate the certificates for you and just print what action would be taken (not actually sending the emails). It'll cache the generated certificate PDFs in a folder called certificates in your data directory. Check the `--cache` option for details on that.
 
-You can also provide a --prefix option with a prefix text for every PDF's file name if that helps you.
+Your CSV file needs to have headers and you can use those headers to map values into your SVG and into the certificate PDF filename. Your CSV MUST have a header called 'email'. For the next couple paragraph, consider a CSV like:
 
-Once you're happy with the results, just run the same thing without the '--dry-run' option.
+```
+First name,Last name,email
+Attendee,One,attendee.one@yourconf.org
+```
+
+You can also provide a `--filename` option with a text pattern for every PDF's file name to be generated. This filename pattern can contain the exact same text of one (or more) of the columns of your CSV file and those will get replaced to generate the PDF file name for each attendant. So for the CSV above, you can specify `--filename "Certificate-First name-Last email"` would generate a PDF certificate named `Certificate-Attendee-One.pdf` for this first attendee. All attendees also have a magical `id` field (unless your own CSV has such field) you can use that represents the row number that they represent. So for the CSV above, `--filename "Certificate-First name-Last email-id"` would generate `Certificate-Attendee-One-1.pdf`.
+
+Now, when it comes to the SVG, you can simply add text elements with `<field name>` where `field name` corresponds to the column in your CSV you want to show. For instance, using the CSV above, if your SVG contains have text elements like `<First name>` and `<Last name>`, those contents will get replaced with the results of each row corresponding to those columns.
+
+Once you're happy with the results, just run the same thing without the `--dry-run` option.
 
 PDF Convertion
 ==============
@@ -43,4 +52,4 @@ If you want to use [Inkscape](http://www.inkscape.org) to generate your PDFs, en
 Development
 ===========
 
-You can start guard with ``./dev.sh`` or just run all tests with ``./setup.sh && bundle exec rake``.
+You can start guard with `./dev.sh` or just run all tests with `./setup.sh && bundle exec rake`.

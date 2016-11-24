@@ -21,9 +21,10 @@ describe Configuration do
       }
     }
   }
+
   let(:full_options) {
     {
-      filename_prefix: 'Prefix-',
+      filename_pattern: 'Prefix-name',
       data_folder: '/path/to/data-folder',
       deliveries: deliveries,
       inkscape_path: '/path/to/inkscape',
@@ -31,10 +32,12 @@ describe Configuration do
       help: 'help!'
     }
   }
+
   it 'should raise exception with help message without data_folder' do
     expect{ Configuration.new(full_options.except(:data_folder)) }.
       to raise_error(ConfigurationError, 'help!')
   end
+
   it 'should raise exception if smtp deliveries are incomplete' do
     expect{ Configuration.new(full_options.merge(
       deliveries: {
@@ -43,33 +46,43 @@ describe Configuration do
       }
     )) }.to raise_error(ConfigurationError, /SMTP server configuration/)
   end
+
   it 'should raise exception if deliveries sender is not present' do
     expect{ Configuration.new(full_options.merge(deliveries: deliveries.except(:sender))) }.
       to raise_error(ConfigurationError, /SENDER information/)
   end
+
   describe 'valid' do
-    subject{ Configuration.new(full_options) }
+    subject(:config) { Configuration.new(full_options) }
+
     it 'should return csv_filepath as data.csv inside data_folder' do
-      expect(subject.csv_filepath).to eq(File.join(full_options[:data_folder], 'data.csv'))
+      expect(config.csv_filepath).to eq(File.join(full_options[:data_folder], 'data.csv'))
     end
+
     it 'should return svg_filepath as model.svg inside data_folder' do
-      expect(subject.svg_filepath).to eq(File.join(full_options[:data_folder], 'model.svg'))
+      expect(config.svg_filepath).to eq(File.join(full_options[:data_folder], 'model.svg'))
     end
+
     it 'should return body_template_path as email.md.erb inside data_folder' do
-      expect(subject.body_template_path).to eq(File.join(full_options[:data_folder], 'email.md.erb'))
+      expect(config.body_template_path).to eq(File.join(full_options[:data_folder], 'email.md.erb'))
     end
+
     it 'should return inkscape_path as given' do
-      expect(subject.inkscape_path).to eq(full_options[:inkscape_path])
+      expect(config.inkscape_path).to eq(full_options[:inkscape_path])
     end
+
     it 'should return sender as given' do
-      expect(subject.email_sender).to eq('fake@fake.com')
+      expect(config.email_sender).to eq('fake@fake.com')
     end
+
     it 'should return cache folder path to certificates' do
-      expect(subject.cache_folder_path).to match('certificates')
+      expect(config.cache_folder_path).to match('certificates')
     end
-    it 'should return filename_prefix as given' do
-      expect(subject.filename_prefix).to eq(full_options[:filename_prefix])
+
+    it 'should return filename_pattern as given' do
+      expect(config.filename_pattern).to eq(full_options[:filename_pattern])
     end
+
     it 'should return delivery as first one' do
       delivery = double(:'complete?' => true,
         to_hash: { user_name: 'test@somewhere.com' })
@@ -77,7 +90,7 @@ describe Configuration do
       expect(Delivery).to receive(:configure_deliveries).
         and_return([delivery])
 
-      expect(subject.delivery).to eq(delivery)
+      expect(config.delivery).to eq(delivery)
     end
   end
 end

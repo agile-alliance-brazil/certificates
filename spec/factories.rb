@@ -1,12 +1,9 @@
 #encoding: UTF-8
 FactoryGirl.define do
   factory :attendee do
-    first_name 'John'
-    last_name  'Doe'
-    email 'john.doe@domain.com'
-
-    initialize_with { new([first_name, last_name], email) }
+    initialize_with { new(name: 'John Doe', email: 'john.doe@email.com') }
   end
+
   factory :certificate_sender do
     configs({
       'user' => 'no-reply',

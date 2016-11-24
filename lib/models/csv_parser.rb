@@ -8,6 +8,14 @@ class CSVParser
 
   def initialize(content, has_headers = true)
     @csv = CSV::parse(content)
-    @csv.shift if has_headers
+    @headers = @csv.shift if has_headers
+  end
+
+  def to_attributes
+    raise 'No headers set' unless @headers
+
+    @csv.map do |row|
+      Hash[@headers.map.with_index{|h, idx| [h, row[idx]]}]
+    end
   end
 end

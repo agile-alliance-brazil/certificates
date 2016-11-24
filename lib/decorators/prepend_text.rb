@@ -4,6 +4,7 @@ module Decorators
     def initialize(prepend)
       @prepend = prepend
     end
+
     def decorate(text)
       @prepend + text
     end

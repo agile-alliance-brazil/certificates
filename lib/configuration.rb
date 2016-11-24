@@ -3,10 +3,11 @@ require_relative './delivery.rb'
 require_relative './configuration/configuration_error.rb'
 
 class Configuration
-  attr_reader :filename_prefix, :delivery, :email_sender, :csv_filepath,
+  attr_reader :filename_pattern, :delivery, :email_sender, :csv_filepath,
     :svg_filepath, :body_template_path, :inkscape_path, :cache_folder_path
+
   def initialize(options)
-    @filename_prefix = options[:filename_prefix]
+    @filename_pattern = options[:filename_pattern]
     @delivery = Delivery.configure_deliveries(options[:deliveries]).first
     @email_sender = options[:deliveries][:sender]
     @csv_filepath = File.expand_path('data.csv', options[:data_folder])
@@ -17,7 +18,9 @@ class Configuration
 
     raise_error_if_incomplete(options)
   end
+
   private
+
   def raise_error_if_incomplete(options)
     if options[:data_folder].nil?
       raise ConfigurationError.new(options[:help])

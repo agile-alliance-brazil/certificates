@@ -8,11 +8,12 @@ require_relative './certificates.rb'
 
 def build_options_from(arguments)
   Dotenv.load
-  option_parser = CertificateOptionParser.new
+  data_folder = arguments.size > 0 ? arguments[0] : nil
+  option_parser = CertificateOptionParser.new(data_folder || '.')
   options = option_parser.parse!(arguments)
   {
-    filename_prefix: options[:filename_prefix],
-    data_folder: arguments.size > 0 ? arguments[0] : nil,
+    filename_pattern: options[:filename_pattern],
+    data_folder: data_folder,
     deliveries: {
       sender: ENV['SENDER'],
       dry_run: options[:dry_run],
@@ -47,14 +48,15 @@ begin
 
   generator = CertificateGenerator.new(svg_content,
     configuration.inkscape_path, configuration.cache_folder_path,
-    configuration.filename_prefix)
+    configuration.filename_pattern)
 
   processor = BulkSenderWorker.new(generator, configuration.email_sender,
     body_template, limit: 0, sleep_time: 0)
 
   parser = CSVParser.new(csv_content)
-  attendees = parser.select{|row| row[0].blank?}.
-    map{|row| Attendee.new([row[1], row[2]], row[3])}
+  attendees = parser.to_attributes.map.with_index do |attributes, idx|
+    Attendee.new({ id: idx + 1 }.merge(attributes))
+  end
 
   processor.perform(attendees)
   puts processor.error_messages

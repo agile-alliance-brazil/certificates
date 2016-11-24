@@ -5,13 +5,16 @@ class Certificate
     @pdf = pdf
     @name_decorator = name_decorator
   end
+
   def has_attachment?
     !@pdf.nil?
   end
+
   def pdf
     @pdf
   end
+
   def filename
-    @name_decorator.decorate(@attendee.name)
+    @name_decorator.decorate(@attendee.attributes)
   end
 end

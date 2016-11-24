@@ -4,6 +4,8 @@ class CertificateModel
     @svg_content = svg
   end
   def svg_for(attendee)
-    @svg_content.gsub(/&lt;nome_do_participante&gt;/, attendee.name.upcase)
+    attendee.attributes.inject(@svg_content) do |result, (attribute, value)|
+      result.gsub(/&lt;#{attribute}&gt;/, value.to_s)
+    end
   end
 end

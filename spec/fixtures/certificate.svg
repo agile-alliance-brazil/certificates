@@ -9,11 +9,11 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="744.09448"
-   height="1052.3622"
+   width="1052.3622"
+   height="744.09448"
    id="svg2"
    version="1.1"
-   inkscape:version="0.48.5 r10040"
+   inkscape:version="0.91 r13725"
    sodipodi:docname="certificate.svg">
   <defs
      id="defs4" />
@@ -25,8 +25,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.35"
-     inkscape:cx="375"
-     inkscape:cy="520"
+     inkscape:cx="335"
+     inkscape:cy="634.28571"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -44,7 +44,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -52,34 +52,40 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,-2.5390623e-6)">
+     transform="translate(0,-308.2677)">
     <text
        xml:space="preserve"
-       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
        x="45.71875"
-       y="82.299492"
+       y="378.65833"
        id="text2987"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          x="45.71875"
-         y="82.299492"
+         y="378.65833"
          id="tspan2989"><tspan
            x="45.71875"
-           y="82.299492"
+           y="378.65833"
            id="tspan2991">This is for </tspan></tspan><tspan
          sodipodi:role="line"
          x="45.71875"
-         y="132.29948"
+         y="428.65833"
          id="tspan2993"><tspan
            x="45.71875"
-           id="tspan2995">&lt;nome_do_participante&gt;</tspan><tspan
+           id="tspan2995">&lt;name&gt;</tspan><tspan
            dx="32.734375"
            id="tspan2997" /></tspan><tspan
          sodipodi:role="line"
          x="45.71875"
-         y="182.29948"
+         y="478.65833"
          id="tspan2999"><tspan
            x="45.71875"
-           id="tspan3001">and it works!</tspan></tspan></text>
+           id="tspan3001">and it works multiple times</tspan></tspan><tspan
+         sodipodi:role="line"
+         x="45.71875"
+         y="528.65833"
+         id="tspan3341"><tspan
+           x="45.71875"
+           id="tspan3343">(like for &lt;email&gt;)</tspan></tspan></text>
   </g>
 </svg>
