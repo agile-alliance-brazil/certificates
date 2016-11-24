@@ -1,13 +1,16 @@
-#encoding: UTF-8
+# encoding:UTF-8
+
+# Certifier VERSION holder
 module Certifier
   def self.version
     VERSION::STRING
   end
+
   module VERSION
-    MAJOR = 1
-    MINOR = 0
+    MAJOR = 0
+    MINOR = 2
     TINY = 0
-    PRE = "beta"
-    STRING = [MAJOR, MINOR, TINY, PRE].compact.join(".")
+    PRE = 'beta'.freeze
+    STRING = [MAJOR, MINOR, TINY, PRE].join('.')
   end
 end

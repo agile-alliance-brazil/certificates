@@ -1,5 +1,8 @@
-#encoding: UTF-8
+# encoding:UTF-8
 module Decorators
+  # Represents multiple decorators
+  # Chains them and sends the result of the first to
+  # the second one and so long
   class Multi
     def initialize(*args)
       @decorators = args.flatten.compact

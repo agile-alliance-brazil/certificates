@@ -1,21 +1,37 @@
-#encoding: UTF-8
+# encoding:UTF-8
+
+# A mailer interceptor to avoid from actually sending
+# the email but rather just log whatever would have happened
 class DryRunInterceptor
   def initialize(output = STDOUT)
     @output = output
   end
+
   def delivering_email(message)
-    @output.puts "Eu mandaria um email de '#{message.from.join(', ')}' para '#{message.to.join(', ')}' com assunto '#{message.subject}'."
+    @output.puts build_header(message)
     @output.puts attachment_data(message) if message.has_attachments?
-    @output.puts "O corpo seria:"
-    @output.puts message.text_part
-    @output.puts "O html do corpo seria:"
-    @output.puts message.html_part
+    @output.puts build_body(message)
 
     message.perform_deliveries = false
   end
+
   private
+
+  def build_header(message)
+    "Eu mandaria um email de '#{message.from.join(', ')}' para \
+'#{message.to.join(', ')}' com assunto '#{message.subject}'."
+  end
+
+  def build_body(message)
+    "O corpo seria:
+#{message.text_part}
+O html do corpo seria:
+#{message.html_part}"
+  end
+
   def attachment_data(message)
-    @output.puts "O email teria #{message.attachments.size} arquivo(s) anexo(s):"
+    @output.puts "O email teria #{message.attachments.size} arquivo(s) \
+anexo(s):"
     attachment_descriptions = message.attachments.map do |attachment|
       "Arquivo '#{attachment.filename}' com tipo #{attachment.content_type}"
     end

@@ -1,8 +1,11 @@
-#encoding: UTF-8
+# encoding:UTF-8
+
+# Uses inkscape (if available) to generate PDF based on an SVG
 class InkscapeConverter
   def initialize(inkscape_path)
     @inkscape_path = inkscape_path
   end
+
   def convert_to_pdf(svg)
     svg_file = Tempfile.new('temporary.svg')
     svg_file.write(svg)

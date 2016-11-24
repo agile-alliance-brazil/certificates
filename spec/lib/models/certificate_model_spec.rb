@@ -1,4 +1,4 @@
-#encoding: UTF-8
+# encoding:UTF-8
 require_relative '../../spec_helper.rb'
 
 describe CertificateModel do
@@ -13,10 +13,10 @@ describe CertificateModel do
 
   subject(:model) { CertificateModel.new(svg) }
 
-  let(:attendee) { Attendee.new(name: 'Hugo Corbucci', email: 'fake@domain.com') }
+  let(:attendee) { Attendee.new(name: 'Atendee One', email: 'fake@domain.com') }
 
   it 'should replace svg tag <name> with attendee name' do
-    expect(model.svg_for(attendee)).to match(/Hugo Corbucci/i)
+    expect(model.svg_for(attendee)).to match(/Atendee One/i)
   end
 
   it 'should replace svg tag <email> with attendee email' do

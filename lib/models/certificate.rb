@@ -1,17 +1,17 @@
-#encoding: UTF-8
+# encoding:UTF-8
+
+# Represents a certificate for a given attendee
 class Certificate
+  attr_reader :pdf
+
   def initialize(attendee, pdf, name_decorator)
     @attendee = attendee
     @pdf = pdf
     @name_decorator = name_decorator
   end
 
-  def has_attachment?
+  def attachment?
     !@pdf.nil?
-  end
-
-  def pdf
-    @pdf
   end
 
   def filename

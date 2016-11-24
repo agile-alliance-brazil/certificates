@@ -1,19 +1,26 @@
-#encoding: UTF-8
+# encoding:UTF-8
 require 'erb'
 require 'ostruct'
 require 'redcarpet'
 
+# Represents a mailed certificate with email body, attachment
+# and recipients
 class MailedCertificate
+  attr_reader :sender
+
   def initialize(sender, base_body, attendee, certificate)
     @sender = sender
     @base_body = base_body
     @attendee = attendee
     @certificate = certificate
-    @html_renderer = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true)
+    @html_renderer = Redcarpet::Markdown.new(
+      Redcarpet::Render::HTML,
+      autolink: true
+    )
   end
 
-  def has_attachment?
-    @certificate.has_attachment?
+  def attachment?
+    @certificate.attachment?
   end
 
   def basename
@@ -26,10 +33,6 @@ class MailedCertificate
 
   def recipient
     @attendee.email
-  end
-
-  def sender
-    @sender
   end
 
   def subject
@@ -48,6 +51,6 @@ class MailedCertificate
 
   def erbd_body
     namespace = OpenStruct.new(attendee: @attendee)
-    ERB.new(@base_body).result(namespace.instance_eval{ binding })
+    ERB.new(@base_body).result(namespace.instance_eval { binding })
   end
 end

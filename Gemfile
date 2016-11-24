@@ -1,11 +1,11 @@
-#encoding: UTF-8
+# encoding:UTF-8
 source 'https://rubygems.org'
 ruby '2.3.1'
 
 def linux_only(require_as)
   RbConfig::CONFIG['host_os'] =~ /linux/ ? require_as : false
 end
-# Mac OS X
+
 def darwin_only(require_as)
   RbConfig::CONFIG['host_os'] =~ /darwin/ ? require_as : false
 end
@@ -28,6 +28,8 @@ group :development, :test do
   gem 'terminal-notifier-guard', require: darwin_only('terminal-notifier-guard')
   gem 'rb-inotify', require: linux_only('rb-inotify')
   gem 'factory_girl'
+  gem 'rubocop'
+  gem 'guard-rubocop'
 end
 
 group :test do

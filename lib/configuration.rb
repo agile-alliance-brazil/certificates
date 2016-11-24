@@ -1,21 +1,18 @@
-#encoding: UTF-8
+# encoding:UTF-8
 require_relative './delivery.rb'
 require_relative './configuration/configuration_error.rb'
 
+# Represents configuration to run the application
 class Configuration
   attr_reader :filename_pattern, :delivery, :email_sender, :csv_filepath,
-    :svg_filepath, :body_template_path, :inkscape_path, :cache_folder_path
+              :svg_filepath, :body_template_path, :inkscape_path,
+              :cache_folder_path
 
   def initialize(options)
     @filename_pattern = options[:filename_pattern]
     @delivery = Delivery.configure_deliveries(options[:deliveries]).first
     @email_sender = options[:deliveries][:sender]
-    @data_folder = options[:data_folder]
-    @csv_filepath = File.expand_path('data.csv', options[:data_folder])
-    @svg_filepath = File.expand_path('model.svg', options[:data_folder])
-    @body_template_path = File.expand_path('email.md.erb', options[:data_folder])
-    @inkscape_path = options[:inkscape_path]
-    @cache_folder_path = options[:cache_folder_path]
+    initialize_paths_from(options)
 
     raise_error_if_incomplete(options)
   end
@@ -26,13 +23,24 @@ class Configuration
 
   private
 
+  def initialize_paths_from(options)
+    @data_folder = options[:data_folder]
+    @csv_filepath = File.expand_path('data.csv', options[:data_folder])
+    @svg_filepath = File.expand_path('model.svg', options[:data_folder])
+    body_path = File.expand_path('email.md.erb', options[:data_folder])
+    @body_template_path = body_path
+    @inkscape_path = options[:inkscape_path]
+    @cache_folder_path = options[:cache_folder_path]
+  end
+
   def raise_error_if_incomplete(options)
-    if options[:data_folder].nil?
-      raise ConfigurationError.new(options[:help])
-    elsif @email_sender.nil?
-      raise ConfigurationError.new("Missing SENDER information. Please define an environment variable with key name 'SENDER' or add that entry to your .env file.")
-    elsif !@delivery.complete?
-      raise ConfigurationError.new(@delivery.error_messages)
+    error_class = ConfigurationError
+    raise error_class, options[:help] if options[:data_folder].nil?
+    if @email_sender.nil?
+      raise error_class, "Missing SENDER information. Please define an \
+environment variable with key name 'SENDER' or add that entry to your .env \
+file."
     end
+    raise error_class, @delivery.error_messages unless @delivery.complete?
   end
 end

@@ -1,12 +1,17 @@
-#encoding: UTF-8
+# encoding:UTF-8
+
+# Represents an attendee coming from the CSV
+# It responds to methods named after each column
+# of the CSV provided.
 class Attendee
   attr_reader :attributes
 
   def initialize(attributes)
-    @attributes = Hash[attributes.map{|k,v| [k.to_s, v]}]
+    stringified_keys = attributes.map { |k, v| [k.to_s, v] }
+    @attributes = Hash[stringified_keys]
   end
 
-  def respond_to_missing?(method, include_private = false)
+  def respond_to_missing?(method, _include_private = false)
     @attributes.keys.include?(method.to_s)
   end
 

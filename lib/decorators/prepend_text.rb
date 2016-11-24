@@ -1,5 +1,6 @@
-#encoding: UTF-8
+# encoding:UTF-8
 module Decorators
+  # Prepends a text before another text
   class PrependText
     def initialize(prepend)
       @prepend = prepend

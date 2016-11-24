@@ -1,4 +1,4 @@
-#encoding: UTF-8
+# encoding:UTF-8
 require_relative '../../spec_helper.rb'
 
 describe CertificateOptionParser do
@@ -12,7 +12,7 @@ describe CertificateOptionParser do
     expect(options).to include(dry_run: false)
   end
 
-  it 'should provide dry run as true on parse! with after other params --dry-run' do
+  it 'should provide dry run as true on parse! with --dry-run at end' do
     options = subject.parse!(['data_folder', '--dry-run'])
     expect(options).to include(dry_run: true)
   end
@@ -55,8 +55,7 @@ describe CertificateOptionParser do
     context 'with different data folder' do
       subject { CertificateOptionParser.new('data') }
 
-
-      it 'should provide cache folder path as data/certificates if data passed' do
+      it 'should provide cache folder path as data/certificates with data' do
         options = subject.parse!([])
         expect(options).to include(:cache_folder_path)
         expect(options[:cache_folder_path]).to match('data/certificates')

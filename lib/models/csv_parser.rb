@@ -1,13 +1,16 @@
-#encoding: UTF-8
+# encoding:UTF-8
 require 'csv'
 require 'forwardable'
 
+# Handles parsing CSV.
+# Transforms each row in an attribute map where the keys are
+# the CSV header names and the values are the entries in each row
 class CSVParser
   extend Forwardable
   def_delegators :@csv, :map, :select
 
   def initialize(content, has_headers = true)
-    @csv = CSV::parse(content)
+    @csv = CSV.parse(content)
     @headers = @csv.shift if has_headers
   end
 
@@ -15,7 +18,10 @@ class CSVParser
     raise 'No headers set' unless @headers
 
     @csv.map do |row|
-      Hash[@headers.map.with_index{|h, idx| [h, row[idx]]}]
+      attribute_pairs = @headers.map.with_index do |h, idx|
+        [h, row[idx]]
+      end
+      Hash[attribute_pairs]
     end
   end
 end

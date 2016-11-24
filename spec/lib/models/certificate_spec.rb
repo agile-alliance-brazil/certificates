@@ -1,19 +1,23 @@
-#encoding: UTF-8
+# encoding:UTF-8
 require_relative '../../spec_helper.rb'
 
 describe Certificate do
   let(:decorator) { Decorators::EventPdfCertificate.new('name') }
 
   it 'should not have attachment if pdf is nil' do
-    certificator = Certificate.new(FactoryGirl.build(:attendee), nil, decorator)
+    certificate = Certificate.new(FactoryGirl.build(:attendee), nil, decorator)
 
-    expect(certificator).to_not have_attachment
+    expect(certificate.attachment?).to be_falsey
   end
 
   describe 'valid certificate' do
-    subject(:certificate) { Certificate.new(FactoryGirl.build(:attendee), 'data', decorator) }
+    subject(:certificate) do
+      Certificate.new(FactoryGirl.build(:attendee), 'data', decorator)
+    end
 
-    it { should have_attachment }
+    it 'should have attachment' do
+      expect(certificate.attachment?).to be_truthy
+    end
 
     it 'should give pdf back as received' do
       expect(certificate.pdf).to eq('data')

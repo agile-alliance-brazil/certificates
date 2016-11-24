@@ -1,4 +1,4 @@
-#encoding: UTF-8
+# encoding:UTF-8
 require_relative './space_cleaner.rb'
 require_relative './prepend_text.rb'
 require_relative './replace_text.rb'
@@ -6,6 +6,8 @@ require_relative './append_text.rb'
 require_relative './multi.rb'
 
 module Decorators
+  # The main decorator for PdfCertificate filenames
+  # Takes attributes and returns text
   class EventPdfCertificate
     def initialize(pattern = nil)
       decorators = []
