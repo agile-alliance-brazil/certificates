@@ -8,9 +8,15 @@ RSpec::Core::RakeTask.new do |t|
 end
 
 namespace :test do
-  task ci: :spec
+  task ci: %i(spec codeclimate-test-reporter)
 end
 
 task ci: :spec
+
+task :'codeclimate-test-reporter' do
+ sh 'if [[ -n ${CODECLIMATE_REPO_TOKEN} ]]; then\
+   bundle exec codeclimate-test-reporter;\
+   fi'
+end
 
 task default: :'test:ci'

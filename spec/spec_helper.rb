@@ -1,6 +1,6 @@
 # encoding: UTF-8
-require 'codeclimate-test-reporter'
-CodeClimate::TestReporter.start
+require 'simplecov'
+SimpleCov.start
 
 require_relative '../lib/certificates.rb'
 require_relative '../lib/decorators/identity.rb'
