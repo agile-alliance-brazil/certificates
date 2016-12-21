@@ -67,11 +67,9 @@ describe ActionMailer::Base do
 end
 
 class FakeDeliveryMethod
-  def initialize(hash)
-  end
+  def initialize(hash); end
 end
 
 class FakeInterceptor
-  def delivering_email(message)
-  end
+  def delivering_email(message); end
 end

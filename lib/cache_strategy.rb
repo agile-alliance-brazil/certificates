@@ -27,7 +27,6 @@ module CacheStrategy
 
   # Does not cache certificates at all
   class NoCache
-    def cache(certificate)
-    end
+    def cache(certificate); end
   end
 end

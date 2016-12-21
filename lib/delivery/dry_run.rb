@@ -4,8 +4,7 @@ require_relative './dry_run/dry_run_interceptor.rb'
 module Delivery
   # Represents a dry-run delivery mode which only prints to terminal
   class DryRun
-    def initialize
-    end
+    def initialize; end
 
     def complete?
       true
