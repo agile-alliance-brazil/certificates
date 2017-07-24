@@ -14,7 +14,7 @@ end
 task ci: %i[spec codeclimate-test-reporter rubocop]
 
 task :'codeclimate-test-reporter' do
-  sh 'if [[ -n ${CODECLIMATE_REPO_TOKEN} ]]; then\
+  sh 'if [ ! -z "${CODECLIMATE_REPO_TOKEN}" ]; then\
     bundle exec codeclimate-test-reporter;\
     fi'
 end
