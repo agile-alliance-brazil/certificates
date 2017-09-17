@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 require 'factory_girl'
 
 FactoryGirl.reset_configuration
