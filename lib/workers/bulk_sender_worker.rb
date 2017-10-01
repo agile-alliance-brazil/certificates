@@ -5,7 +5,7 @@ require_relative '../mailer/certificate_mailer.rb'
 # Worker that handles generating certificate for all attendees
 # Eventually should support enqueuing the work instead of performing it
 class BulkSenderWorker
-  PROCESSING_INTERVAL = 5
+  PROCESSING_INTERVAL = 1
 
   def initialize(generator, sender, body_template, options = {})
     @errors = []
@@ -31,11 +31,12 @@ class BulkSenderWorker
   def error_messages
     return if @errors.empty?
 
-    STDERR.puts 'Falha ao enviar certificado para as seguintes pessoas:'
-    STDERR.puts @errors.first.attributes.keys.join(',')
+    messages = "Falha ao enviar certificado para as seguintes pessoas:\n"
+    messages += @errors.first.attributes.keys.join(',') + "\n"
     @errors.each do |attendee|
-      STDERR.puts attendee.attributes.map { |_, v| v }.join(',')
+      messages += attendee.attributes.map { |_, v| v }.join(',') + "\n"
     end
+    messages
   end
 
   private

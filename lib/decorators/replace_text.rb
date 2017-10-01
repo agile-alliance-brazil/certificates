@@ -9,7 +9,7 @@ module Decorators
 
     def decorate(attributes)
       attributes.inject(@pattern) do |result, (attribute, value)|
-        result.gsub(/#{attribute}/, value.to_s)
+        result.gsub(/(?<!\w)#{attribute}(?!\w)/, value.to_s)
       end
     end
   end
