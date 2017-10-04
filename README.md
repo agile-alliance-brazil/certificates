@@ -26,7 +26,7 @@ In the root folder, run:
 This will create a .env file in that same folder. Open it and edit the values to match your needs. Copy the example folder into your own (let's say "example"), change the contents to match your attendees (in a CSV file called data.csv inside that folder), your certificate's svg (called model.svg in that folder) and an email template in markdown (called email.md.erb). Then run:
 
 ```
-bundle exec ruby ./lib/generate_certificates.rb example --dry-run
+bundle exec ruby ./bin/generate_certificates example --dry-run
 ```
 
 This should generate the certificates for you and just print what action would be taken (not actually sending the emails). It'll cache the generated certificate PDFs in a folder called certificates in your data directory. Check the `--cache` option for details on that.

@@ -1,10 +1,12 @@
 #!/usr/bin/env ruby
 # encoding:UTF-8
+lib = File.expand_path('../../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'rubygems'
 require 'json'
 require 'dotenv'
 require 'action_mailer'
-require_relative './certificates.rb'
+require 'certificator'
 
 def build_smtp_options
   {
