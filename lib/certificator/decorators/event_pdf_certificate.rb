@@ -1,9 +1,9 @@
 # encoding:UTF-8
-require_relative './space_cleaner.rb'
-require_relative './prepend_text.rb'
-require_relative './replace_text.rb'
-require_relative './append_text.rb'
-require_relative './multi.rb'
+require 'certificator/decorators/space_cleaner'
+require 'certificator/decorators/prepend_text'
+require 'certificator/decorators/replace_text'
+require 'certificator/decorators/append_text'
+require 'certificator/decorators/multi'
 
 module Decorators
   # The main decorator for PdfCertificate filenames

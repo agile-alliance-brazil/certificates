@@ -1,6 +1,6 @@
 # encoding:UTF-8
 require 'optparse'
-require_relative '../version.rb'
+require 'certificator/version'
 
 # The parser for certificate options. Describes all options and how
 # to parse them for the application

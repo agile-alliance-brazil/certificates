@@ -1,7 +1,7 @@
 # encoding:UTF-8
-require_relative 'delivery/dry_run.rb'
-require_relative 'delivery/smtp.rb'
-require_relative 'delivery/aws.rb'
+require 'certificator/delivery/dry_run'
+require 'certificator/delivery/smtp'
+require 'certificator/delivery/aws'
 
 # Represents available delivery options to send certificate.
 # Can be a dry-run (delivers to terminal), an AWS SES delivery

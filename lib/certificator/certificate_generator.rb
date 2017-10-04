@@ -1,10 +1,10 @@
 # encoding:UTF-8
-require_relative './models/certificate_model.rb'
-require_relative './converters/inkscape_converter.rb'
-require_relative './converters/prawn_converter.rb'
-require_relative './cache_strategy.rb'
-require_relative './decorators/event_pdf_certificate.rb'
-require_relative './models/certificate.rb'
+require 'certificator/models/certificate_model'
+require 'certificator/converters/inkscape_converter'
+require 'certificator/converters/prawn_converter'
+require 'certificator/cache_strategy'
+require 'certificator/decorators/event_pdf_certificate'
+require 'certificator/models/certificate'
 
 # A generator for certificates
 # Ties up together a bunch of things to generate a certificate per attendee

@@ -1,6 +1,6 @@
 # encoding:UTF-8
-require_relative './delivery.rb'
-require_relative './configuration/configuration_error.rb'
+require 'certificator/delivery'
+require 'certificator/configuration/configuration_error'
 
 # Represents configuration to run the application
 class Configuration
