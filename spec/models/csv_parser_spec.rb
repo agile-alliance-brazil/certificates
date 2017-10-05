@@ -1,11 +1,10 @@
 # encoding:UTF-8
-require_relative '../../spec_helper.rb'
 
-describe CSVParser do
+describe Certificator::CSVParser do
   let(:data) { "data,inline\none,two\nthree,four\n" }
 
   context 'without header' do
-    subject(:parser) { CSVParser.new(data, false) }
+    subject(:parser) { Certificator::CSVParser.new(data, false) }
 
     it 'should not ignore first row' do
       expect(parser.select { true }.size).to eq(3)
@@ -17,7 +16,7 @@ describe CSVParser do
   end
 
   context 'with header' do
-    subject(:parser) { CSVParser.new(data, true) }
+    subject(:parser) { Certificator::CSVParser.new(data, true) }
 
     it 'should ignore first row' do
       expect(parser.select { true }.size).to eq(2)

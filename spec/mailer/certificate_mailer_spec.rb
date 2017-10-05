@@ -1,8 +1,7 @@
 # encoding:UTF-8
-require_relative '../../spec_helper.rb'
 
-describe CertificateMailer do
-  subject(:mailer) { CertificateMailer.send(:new) }
+describe Certificator::CertificateMailer do
+  subject(:mailer) { Certificator::CertificateMailer.send(:new) }
 
   let(:sender) do
     sender = double('Sender')

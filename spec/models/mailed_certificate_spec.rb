@@ -1,10 +1,10 @@
-require_relative '../../spec_helper.rb'
+# encoding:UTF-8
 
-describe MailedCertificate do
+describe Certificator::MailedCertificate do
   let(:attendee) { double('attendee') }
   let(:certificate) { double('certificate') }
   subject(:mailed_certificate) do
-    MailedCertificate.new(
+    Certificator::MailedCertificate.new(
       'sender@domain.com',
       %(Subject\n=======\n\nDear <%= attendee.name %>,\n
 This is an email with a link to http://www.agilealliancebrazil.org.  \n\

@@ -1,10 +1,9 @@
 # encoding:UTF-8
-require_relative '../../spec_helper.rb'
 
-describe Decorators::EventPdfCertificate do
+describe Certificator::Decorators::EventPdfCertificate do
   describe 'with prefix' do
     subject(:decorator) do
-      Decorators::EventPdfCertificate.new('short-file-id-name')
+      Certificator::Decorators::EventPdfCertificate.new('short-file-id-name')
     end
 
     it 'should decorate filename with id' do
@@ -27,7 +26,7 @@ describe Decorators::EventPdfCertificate do
   end
 
   describe 'without prefix' do
-    subject(:decorator) { Decorators::EventPdfCertificate.new(nil) }
+    subject(:decorator) { Certificator::Decorators::EventPdfCertificate.new(nil) }
 
     it 'should skip prefix if nil' do
       expect(

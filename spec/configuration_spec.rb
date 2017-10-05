@@ -1,7 +1,6 @@
 # encoding:UTF-8
-require_relative '../spec_helper.rb'
 
-describe Configuration do
+describe Certificator::Configuration do
   let(:deliveries) do
     {
       sender: 'fake@fake.com',
@@ -34,7 +33,7 @@ describe Configuration do
   end
 
   it 'should raise exception with help message without data_folder' do
-    expect { Configuration.new(full_options.except(:data_folder)) }
+    expect { Certificator::Configuration.new(full_options.except(:data_folder)) }
       .to raise_error(ConfigurationError, 'help!')
   end
 
@@ -47,7 +46,7 @@ describe Configuration do
       }
     }
     expect do
-      Configuration.new(full_options.merge(incomplete_smtp))
+      Certificator::Configuration.new(full_options.merge(incomplete_smtp))
     end.to raise_error(ConfigurationError, /SMTP server configuration/)
   end
 
@@ -56,12 +55,12 @@ describe Configuration do
       deliveries: deliveries.except(:sender)
     }
     expect do
-      Configuration.new(full_options.merge(missing_sender))
+      Certificator::Configuration.new(full_options.merge(missing_sender))
     end.to raise_error(ConfigurationError, /SENDER information/)
   end
 
   describe 'valid' do
-    subject(:config) { Configuration.new(full_options) }
+    subject(:config) { Certificator::Configuration.new(full_options) }
 
     it 'should return csv_filepath as data.csv inside data_folder' do
       expect(config.csv_filepath).to eq(

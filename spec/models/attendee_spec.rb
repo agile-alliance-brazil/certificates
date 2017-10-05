@@ -1,9 +1,8 @@
 # encoding:UTF-8
-require_relative '../../spec_helper.rb'
 
-describe Attendee do
+describe Certificator::Attendee do
   subject(:attendee) do
-    Attendee.new(name: 'Hugo Corbucci', email: 'fake@domain.com')
+    Certificator::Attendee.new(name: 'Hugo Corbucci', email: 'fake@domain.com')
   end
 
   it 'should build name with single name by itself' do

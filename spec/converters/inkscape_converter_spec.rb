@@ -1,8 +1,7 @@
 # encoding:UTF-8
-require_relative '../../spec_helper.rb'
 
-describe InkscapeConverter do
-  subject(:converter) { InkscapeConverter.new('inkscape') }
+describe Certificator::InkscapeConverter do
+  subject(:converter) { Certificator::InkscapeConverter.new('inkscape') }
 
   it 'should convert files using temp files' do
     svg_file = double('SVG Tempfile')

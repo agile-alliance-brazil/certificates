@@ -1,11 +1,10 @@
 # encoding:UTF-8
-require_relative '../../spec_helper.rb'
 
-describe PrawnConverter do
+describe Certificator::PrawnConverter do
   let(:svg_data) do
     File.read(
       File.expand_path(
-        '../../fixtures/certificate.svg',
+        '../fixtures/certificate.svg',
         File.dirname(__FILE__)
       )
     )
@@ -13,7 +12,7 @@ describe PrawnConverter do
   let(:expected_pdf_data) do
     File.read(
       File.expand_path(
-        '../../fixtures/certificate.pdf',
+        '../fixtures/certificate.pdf',
         File.dirname(__FILE__)
       )
     )

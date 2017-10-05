@@ -1,5 +1,4 @@
 # encoding:UTF-8
-require_relative '../../spec_helper.rb'
 
 describe Delivery::DryRun do
   subject(:dry_run) { Delivery::DryRun.new }
