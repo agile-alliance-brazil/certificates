@@ -1,6 +1,6 @@
 # encoding:UTF-8
-require_relative '../models/mailed_certificate.rb'
-require_relative '../mailer/certificate_mailer.rb'
+require 'certificator/models/mailed_certificate'
+require 'certificator/mailer/certificate_mailer'
 
 # Worker that handles generating certificate for all attendees
 # Eventually should support enqueuing the work instead of performing it

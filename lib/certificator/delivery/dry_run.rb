@@ -1,5 +1,5 @@
 # encoding:UTF-8
-require_relative './dry_run/dry_run_interceptor.rb'
+require 'certificator/delivery/dry_run/dry_run_interceptor'
 
 module Delivery
   # Represents a dry-run delivery mode which only prints to terminal
