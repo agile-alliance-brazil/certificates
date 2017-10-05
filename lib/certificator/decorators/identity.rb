@@ -1,5 +1,5 @@
 # encoding:UTF-8
-module Decorators
+module Certificator::Decorators
   # The identity decorator. Returns what is given to it
   class Identity
     def decorate(text)

@@ -3,7 +3,7 @@ require 'certificator/delivery'
 require 'certificator/configuration/configuration_error'
 
 # Represents configuration to run the application
-class Configuration
+class Certificator::Configuration
   attr_reader :filename_pattern, :delivery, :email_sender, :csv_filepath,
               :svg_filepath, :body_template_path, :inkscape_path,
               :cache_folder_path

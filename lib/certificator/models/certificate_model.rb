@@ -1,7 +1,7 @@
 # encoding:UTF-8
 
 # Generates SVG certificates based on a provided model
-class CertificateModel
+class Certificator::CertificateModel
   def initialize(svg)
     @svg_content = svg
   end

@@ -1,5 +1,5 @@
 # encoding:UTF-8
-module Decorators
+module Certificator::Decorators
   # Removes spaces from text
   class SpaceCleaner
     def decorate(text)

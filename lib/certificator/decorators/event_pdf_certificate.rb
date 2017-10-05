@@ -5,7 +5,7 @@ require 'certificator/decorators/replace_text'
 require 'certificator/decorators/append_text'
 require 'certificator/decorators/multi'
 
-module Decorators
+module Certificator::Decorators
   # The main decorator for PdfCertificate filenames
   # Takes attributes and returns text
   class EventPdfCertificate

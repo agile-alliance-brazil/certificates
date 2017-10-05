@@ -5,7 +5,7 @@ require 'redcarpet'
 
 # Represents a mailed certificate with email body, attachment
 # and recipients
-class MailedCertificate
+class Certificator::MailedCertificate
   attr_reader :sender
 
   def initialize(sender, base_body, attendee, certificate)

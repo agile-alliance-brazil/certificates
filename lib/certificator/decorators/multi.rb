@@ -1,5 +1,5 @@
 # encoding:UTF-8
-module Decorators
+module Certificator::Decorators
   # Represents multiple decorators
   # Chains them and sends the result of the first to
   # the second one and so long

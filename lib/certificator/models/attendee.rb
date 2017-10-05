@@ -3,7 +3,7 @@
 # Represents an attendee coming from the CSV
 # It responds to methods named after each column
 # of the CSV provided.
-class Attendee
+class Certificator::Attendee
   attr_reader :attributes
 
   def initialize(attributes)

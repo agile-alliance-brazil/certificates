@@ -4,7 +4,7 @@ require 'action_mailer'
 
 # A mailer that sends a mailed_certificate with both HTML and plain text
 # representations along with attachments if available.
-class CertificateMailer < ActionMailer::Base
+class Certificator::CertificateMailer < ActionMailer::Base
   def certificate_to(mailed_certificate)
     if mailed_certificate.attachment?
       attachments[mailed_certificate.basename] = mailed_certificate.certificate

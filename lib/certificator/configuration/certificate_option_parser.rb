@@ -4,7 +4,7 @@ require 'certificator/version'
 
 # The parser for certificate options. Describes all options and how
 # to parse them for the application
-class CertificateOptionParser
+class Certificator::OptionParser
   def initialize(data_folder = '.')
     @dry_run = false
     @cache_folder_path = File.expand_path("#{data_folder}/certificates/")

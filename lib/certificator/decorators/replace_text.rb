@@ -1,5 +1,5 @@
 # encoding:UTF-8
-module Decorators
+module Certificator::Decorators
   # Replaces chuncks of text in the pattern with values of
   # attributes named the same way
   class ReplaceText

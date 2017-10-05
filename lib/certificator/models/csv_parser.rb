@@ -5,7 +5,7 @@ require 'forwardable'
 # Handles parsing CSV.
 # Transforms each row in an attribute map where the keys are
 # the CSV header names and the values are the entries in each row
-class CSVParser
+class Certificator::CSVParser
   extend Forwardable
   def_delegators :@csv, :map, :select
 

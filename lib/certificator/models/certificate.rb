@@ -1,7 +1,7 @@
 # encoding:UTF-8
 
 # Represents a certificate for a given attendee
-class Certificate
+class Certificator::Certificate
   attr_reader :pdf
 
   def initialize(attendee, pdf, name_decorator)

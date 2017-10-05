@@ -50,20 +50,20 @@ end
 def build_options_from(arguments)
   Dotenv.load
   data_folder = arguments.empty? ? nil : arguments[0]
-  option_parser = CertificateOptionParser.new(data_folder || '.')
+  option_parser = Certificator::OptionParser.new(data_folder || '.')
   options = option_parser.parse!(arguments)
   build_map_from(data_folder, options, option_parser.help)
 end
 
 def attendees_from(csv_content)
-  parser = CSVParser.new(csv_content)
+  parser = Certificator::CSVParser.new(csv_content)
   parser.to_attributes.map.with_index do |attributes, idx|
-    Attendee.new({ id: idx + 1 }.merge(attributes))
+    Certificator::Attendee.new({ id: idx + 1 }.merge(attributes))
   end
 end
 
 def generator_from(svg_content, configuration)
-  CertificateGenerator.new(
+  Certificator::Generator.new(
     svg_content,
     configuration.inkscape_path,
     configuration.cache_folder_path,
@@ -73,7 +73,7 @@ def generator_from(svg_content, configuration)
 end
 
 def processor_from(generator, body_template, configuration)
-  BulkSenderWorker.new(
+  Certificator::BulkSenderWorker.new(
     generator,
     configuration.email_sender,
     body_template,
@@ -83,7 +83,7 @@ end
 
 options = build_options_from(ARGV)
 begin
-  configuration = Configuration.new(options)
+  configuration = Certificator::Configuration.new(options)
   configuration.delivery.install_on(ActionMailer::Base)
 
   csv_content = File.read(configuration.csv_filepath)

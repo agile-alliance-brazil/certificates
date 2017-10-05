@@ -2,7 +2,7 @@
 require 'fileutils'
 
 # Decides which cache to use based on a given path
-module CacheStrategy
+module Certificator::CacheStrategy
   def self.build_from(path = nil)
     if path
       PDFCache.new(path)

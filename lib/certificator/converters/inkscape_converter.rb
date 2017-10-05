@@ -1,7 +1,7 @@
 # encoding:UTF-8
 
 # Uses inkscape (if available) to generate PDF based on an SVG
-class InkscapeConverter
+class Certificator::InkscapeConverter
   def initialize(inkscape_path)
     @inkscape_path = inkscape_path
   end

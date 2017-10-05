@@ -2,7 +2,7 @@
 require 'prawn-svg'
 
 # Converts an SVG to PDF using the Prawn library
-class PrawnConverter
+class Certificator::PrawnConverter
   def initialize(font_paths = [])
     @font_paths = font_paths
   end

@@ -1,5 +1,5 @@
 # encoding:UTF-8
-module Decorators
+module Certificator::Decorators
   # Prepends a text before another text
   class PrependText
     def initialize(prepend)

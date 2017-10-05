@@ -8,19 +8,19 @@ require 'certificator/models/certificate'
 
 # A generator for certificates
 # Ties up together a bunch of things to generate a certificate per attendee
-class CertificateGenerator
+class Certificator::Generator
   def initialize(svg, inkscape, cache_path, filename_pattern, font_paths)
-    @model = CertificateModel.new(svg)
+    @model = Certificator::CertificateModel.new(svg)
     @converter = converter_for(inkscape, font_paths)
-    @cache = CacheStrategy.build_from(cache_path)
+    @cache = Certificator::CacheStrategy.build_from(cache_path)
 
-    @name_decorator = Decorators::EventPdfCertificate.new(filename_pattern)
+    @name_decorator = Certificator::Decorators::EventPdfCertificate.new(filename_pattern)
   end
 
   def generate_certificate_for(attendee)
     attendee_svg = @model.svg_for(attendee)
     pdf = @converter.convert_to_pdf(attendee_svg)
-    certificate = Certificate.new(attendee, pdf, @name_decorator)
+    certificate = Certificator::Certificate.new(attendee, pdf, @name_decorator)
     @cache.cache(certificate)
     certificate
   end
@@ -29,9 +29,9 @@ class CertificateGenerator
 
   def converter_for(inkscape, font_paths)
     if inkscape
-      InkscapeConverter.new(inkscape)
+      Certificator::InkscapeConverter.new(inkscape)
     else
-      PrawnConverter.new(font_paths)
+      Certificator::PrawnConverter.new(font_paths)
     end
   end
 end

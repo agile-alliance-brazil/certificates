@@ -4,7 +4,7 @@ require_relative '../mailer/certificate_mailer.rb'
 
 # Worker that handles generating certificate for all attendees
 # Eventually should support enqueuing the work instead of performing it
-class BulkSenderWorker
+class Certificator::BulkSenderWorker
   PROCESSING_INTERVAL = 1
 
   def initialize(generator, sender, body_template, options = {})
@@ -45,11 +45,11 @@ class BulkSenderWorker
     certificate = @generator.generate_certificate_for(attendee)
     mailed_certificate = mailed_certificate_for(attendee, certificate)
 
-    CertificateMailer.certificate_to(mailed_certificate).deliver_now
+    Certificator::CertificateMailer.certificate_to(mailed_certificate).deliver_now
   end
 
   def mailed_certificate_for(attendee, certificate)
-    MailedCertificate.new(@sender, @body_template, attendee, certificate)
+    Certificator::MailedCertificate.new(@sender, @body_template, attendee, certificate)
   end
 
   def log_error(e, attendee)
