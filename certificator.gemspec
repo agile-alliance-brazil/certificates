@@ -1,4 +1,3 @@
-# coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'certificator/version'
@@ -9,7 +8,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Hugo Corbucci']
   spec.email         = ['fixme@example.com']
 
-  spec.summary       = %q{Small helper script to generate and send attendees certificate PDFs.}
+  spec.summary       = <<-SUMMARY
+  Small helper script to generate and send attendees certificate PDFs.
+SUMMARY
   spec.homepage      = 'https://github.com/agile-alliance-brazil/certificates'
   spec.license       = 'MIT'
 

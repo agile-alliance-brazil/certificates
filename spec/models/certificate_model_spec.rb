@@ -12,7 +12,9 @@ describe Certificator::CertificateModel do
 
   subject(:model) { Certificator::CertificateModel.new(svg) }
 
-  let(:attendee) { Certificator::Attendee.new(name: 'Atendee One', email: 'fake@domain.com') }
+  let(:attendee) do
+    Certificator::Attendee.new(name: 'Atendee One', email: 'fake@domain.com')
+  end
 
   it 'should replace svg tag <name> with attendee name' do
     expect(model.svg_for(attendee)).to match(/Atendee One/i)

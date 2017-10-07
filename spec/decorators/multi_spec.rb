@@ -20,7 +20,8 @@ describe Certificator::Decorators::Multi do
   end
 
   it 'should accept single nested array' do
-    subject = Certificator::Decorators::Multi.new([decorator1, [nil, decorator2]])
+    decorators = [decorator1, [nil, decorator2]]
+    subject = Certificator::Decorators::Multi.new(decorators)
     expect(subject.decorate('file')).to eq('second-first-file')
   end
 end
