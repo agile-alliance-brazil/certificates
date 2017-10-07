@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.name          = 'certificator'
   spec.version       = Certificator.version
   spec.authors       = ['Hugo Corbucci']
-  spec.email         = ['fixme@example.com']
+  spec.email         = ['sistemas@agilebrazil.com']
 
   spec.summary       = <<-SUMMARY
   Small helper script to generate and send attendees certificate PDFs.
