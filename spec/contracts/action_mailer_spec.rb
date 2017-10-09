@@ -1,6 +1,4 @@
 # encoding:UTF-8
-require_relative '../spec_helper.rb'
-
 require 'rspec/expectations'
 
 describe ActionMailer::Base do

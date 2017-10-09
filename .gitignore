@@ -8,6 +8,8 @@
 /InstalledFiles
 /pkg/
 /spec/reports/
+# rspec failure tracking
+.rspec_status
 /test/tmp/
 /test/version_tmp/
 /tmp/
