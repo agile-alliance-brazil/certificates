@@ -2,59 +2,67 @@
 require 'certificator/models/mailed_certificate'
 require 'certificator/mailer/certificate_mailer'
 
-# Worker that handles generating certificate for all attendees
-# Eventually should support enqueuing the work instead of performing it
-class Certificator::BulkSenderWorker
-  PROCESSING_INTERVAL = 1
+module Certificator
+  # Worker that handles generating certificate for all attendees
+  # Eventually should support enqueuing the work instead of performing it
+  class BulkSenderWorker
+    PROCESSING_INTERVAL = 1
 
-  def initialize(generator, sender, body_template, options = {})
-    @errors = []
-    @generator = generator
-    @sender = sender
-    @body_template = body_template
-    @options = options
-  end
+    def initialize(generator, sender, body_template, options = {})
+      @errors = []
+      @generator = generator
+      @sender = sender
+      @body_template = body_template
+      @options = options
+    end
 
-  def perform(attendees)
-    @errors = []
-    attendees.each do |attendee|
-      begin
-        deliver_certificate_for(attendee)
-        sleep(PROCESSING_INTERVAL)
-      rescue StandardError => e
-        log_error(e, attendee)
-        @errors << attendee
+    def perform(attendees)
+      @errors = []
+      attendees.each do |attendee|
+        begin
+          deliver_certificate_for(attendee)
+          sleep(PROCESSING_INTERVAL)
+        rescue StandardError => e
+          log_error(e, attendee)
+          @errors << attendee
+        end
       end
     end
-  end
 
-  def error_messages
-    return if @errors.empty?
+    def error_messages
+      return if @errors.empty?
 
-    messages = "Falha ao enviar certificado para as seguintes pessoas:\n"
-    messages += @errors.first.attributes.keys.join(',') + "\n"
-    @errors.each do |attendee|
-      messages += attendee.attributes.map { |_, v| v }.join(',') + "\n"
+      messages = "Falha ao enviar certificado para as seguintes pessoas:\n"
+      messages += @errors.first.attributes.keys.join(',') + "\n"
+      @errors.each do |attendee|
+        messages += attendee.attributes.map { |_, v| v }.join(',') + "\n"
+      end
+      messages
     end
-    messages
-  end
 
-  private
+    private
 
-  def deliver_certificate_for(attendee)
-    certificate = @generator.generate_certificate_for(attendee)
-    mailed_certificate = mailed_certificate_for(attendee, certificate)
+    def deliver_certificate_for(attendee)
+      certificate = @generator.generate_certificate_for(attendee)
+      mailed_certificate = mailed_certificate_for(attendee, certificate)
 
-    Certificator::CertificateMailer.certificate_to(mailed_certificate).deliver_now
-  end
+      mail = Certificator::CertificateMailer.certificate_to(mailed_certificate)
+      mail.deliver_now
+    end
 
-  def mailed_certificate_for(attendee, certificate)
-    Certificator::MailedCertificate.new(@sender, @body_template, attendee, certificate)
-  end
+    def mailed_certificate_for(attendee, certificate)
+      Certificator::MailedCertificate.new(
+        @sender,
+        @body_template,
+        attendee,
+        certificate
+      )
+    end
 
-  def log_error(e, attendee)
-    STDERR.puts "Erro ao enviar certificado para #{attendee.inspect}."
-    STDERR.puts "Exceção: #{e.message}"
-    STDERR.puts e.backtrace
+    def log_error(e, attendee)
+      STDERR.puts "Erro ao enviar certificado para #{attendee.inspect}."
+      STDERR.puts "Exceção: #{e.message}"
+      STDERR.puts e.backtrace
+    end
   end
 end

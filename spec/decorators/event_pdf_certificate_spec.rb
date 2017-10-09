@@ -26,7 +26,9 @@ describe Certificator::Decorators::EventPdfCertificate do
   end
 
   describe 'without prefix' do
-    subject(:decorator) { Certificator::Decorators::EventPdfCertificate.new(nil) }
+    subject(:decorator) do
+      Certificator::Decorators::EventPdfCertificate.new(nil)
+    end
 
     it 'should skip prefix if nil' do
       expect(

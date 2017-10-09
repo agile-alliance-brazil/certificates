@@ -33,8 +33,9 @@ describe Certificator::Configuration do
   end
 
   it 'should raise exception with help message without data_folder' do
-    expect { Certificator::Configuration.new(full_options.except(:data_folder)) }
-      .to raise_error(ConfigurationError, 'help!')
+    expect do
+      Certificator::Configuration.new(full_options.except(:data_folder))
+    end.to raise_error(ConfigurationError, 'help!')
   end
 
   it 'should raise exception if smtp deliveries are incomplete' do
