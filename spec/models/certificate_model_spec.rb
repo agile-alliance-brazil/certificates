@@ -1,5 +1,3 @@
-# encoding:UTF-8
-
 describe Certificator::CertificateModel do
   let(:svg) do
     File.read(

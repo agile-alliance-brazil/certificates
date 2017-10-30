@@ -1,5 +1,3 @@
-# encoding:UTF-8
-
 describe Certificator::Decorators::EventPdfCertificate do
   describe 'with prefix' do
     subject(:decorator) do

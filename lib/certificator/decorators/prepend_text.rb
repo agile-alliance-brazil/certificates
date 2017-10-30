@@ -1,4 +1,3 @@
-# encoding:UTF-8
 module Certificator
   module Decorators
     # Prepends a text before another text

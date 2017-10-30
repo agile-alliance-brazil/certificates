@@ -1,4 +1,3 @@
-# encoding:UTF-8
 require 'certificator/delivery/dry_run/dry_run_interceptor'
 
 module Delivery

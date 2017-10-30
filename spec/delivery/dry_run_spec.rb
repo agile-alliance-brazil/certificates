@@ -1,5 +1,3 @@
-# encoding:UTF-8
-
 describe Delivery::DryRun do
   subject(:dry_run) { Delivery::DryRun.new }
 

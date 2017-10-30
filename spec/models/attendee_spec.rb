@@ -1,5 +1,3 @@
-# encoding:UTF-8
-
 describe Certificator::Attendee do
   subject(:attendee) do
     Certificator::Attendee.new(name: 'Hugo Corbucci', email: 'fake@domain.com')

@@ -1,4 +1,3 @@
-# encoding:UTF-8
 module Certificator
   module Decorators
     # Replaces chuncks of text in the pattern with values of

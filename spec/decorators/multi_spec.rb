@@ -1,5 +1,3 @@
-# encoding:UTF-8
-
 describe Certificator::Decorators::Multi do
   let(:decorator1) { Certificator::Decorators::PrependText.new('first-') }
   let(:decorator2) { Certificator::Decorators::PrependText.new('second-') }

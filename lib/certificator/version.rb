@@ -1,5 +1,3 @@
-# encoding:UTF-8
-
 # Certificador module encapsulates all of this gem's code
 module Certificator
   def self.version
