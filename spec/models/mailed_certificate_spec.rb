@@ -1,5 +1,3 @@
-# encoding:UTF-8
-
 describe Certificator::MailedCertificate do
   let(:attendee) { double('attendee') }
   let(:certificate) { double('certificate') }

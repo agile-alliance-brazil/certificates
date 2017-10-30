@@ -1,5 +1,3 @@
-# encoding:UTF-8
-
 describe Certificator::Decorators::Identity do
   subject(:decorator) { Certificator::Decorators::Identity.new }
 

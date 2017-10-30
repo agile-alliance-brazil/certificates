@@ -1,5 +1,3 @@
-# encoding:UTF-8
-
 describe Certificator::Decorators::PrependText do
   subject(:decorator) { Certificator::Decorators::PrependText.new('suffix-') }
 

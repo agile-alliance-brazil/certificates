@@ -1,5 +1,3 @@
-# encoding:UTF-8
-
 describe Delivery::AWS do
   describe 'missing key id' do
     subject(:aws) { Delivery::AWS.new(nil, 'secret') }

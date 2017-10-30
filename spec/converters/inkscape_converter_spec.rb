@@ -1,5 +1,3 @@
-# encoding:UTF-8
-
 describe Certificator::InkscapeConverter do
   subject(:converter) { Certificator::InkscapeConverter.new('inkscape') }
 

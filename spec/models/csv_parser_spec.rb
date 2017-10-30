@@ -1,5 +1,3 @@
-# encoding:UTF-8
-
 describe Certificator::CSVParser do
   let(:data) { "data,inline\none,two\nthree,four\n" }
 

@@ -1,4 +1,3 @@
-# encoding:UTF-8
 module Certificator
   module Decorators
     # Removes spaces from text

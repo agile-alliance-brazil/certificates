@@ -1,4 +1,3 @@
-# encoding:UTF-8
 require 'certificator/version'
 require 'certificator/configuration/certificate_option_parser'
 require 'certificator/configuration'

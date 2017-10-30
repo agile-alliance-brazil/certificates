@@ -1,5 +1,3 @@
-# encoding:UTF-8
-
 describe Certificator::Certificate do
   let(:decorator) { Certificator::Decorators::EventPdfCertificate.new('name') }
 

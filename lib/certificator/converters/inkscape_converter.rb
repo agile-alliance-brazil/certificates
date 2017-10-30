@@ -1,5 +1,3 @@
-# encoding:UTF-8
-
 module Certificator
   # Uses inkscape (if available) to generate PDF based on an SVG
   class InkscapeConverter

@@ -1,4 +1,3 @@
-# encoding:UTF-8
 require 'action_controller'
 require 'action_mailer'
 

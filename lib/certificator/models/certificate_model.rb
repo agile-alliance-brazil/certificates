@@ -1,5 +1,3 @@
-# encoding:UTF-8
-
 module Certificator
   # Generates SVG certificates based on a provided model
   class CertificateModel

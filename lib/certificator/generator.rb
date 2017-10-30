@@ -1,4 +1,3 @@
-# encoding:UTF-8
 require 'certificator/models/certificate_model'
 require 'certificator/converters/inkscape_converter'
 require 'certificator/converters/prawn_converter'

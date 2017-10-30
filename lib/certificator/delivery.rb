@@ -1,4 +1,3 @@
-# encoding:UTF-8
 require 'certificator/delivery/dry_run'
 require 'certificator/delivery/smtp'
 require 'certificator/delivery/aws'

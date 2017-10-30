@@ -1,4 +1,3 @@
-# encoding:UTF-8
 require 'certificator/decorators/space_cleaner'
 require 'certificator/decorators/prepend_text'
 require 'certificator/decorators/replace_text'

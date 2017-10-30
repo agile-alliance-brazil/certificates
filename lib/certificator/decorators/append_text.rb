@@ -1,4 +1,3 @@
-# encoding:UTF-8
 module Certificator
   module Decorators
     # Appends a given text at the end of any given text

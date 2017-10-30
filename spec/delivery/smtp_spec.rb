@@ -1,5 +1,3 @@
-# encoding:UTF-8
-
 describe Delivery::SMTP do
   let(:default_settings) do
     {

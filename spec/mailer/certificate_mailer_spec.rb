@@ -1,5 +1,3 @@
-# encoding:UTF-8
-
 describe Certificator::CertificateMailer do
   subject(:mailer) { Certificator::CertificateMailer.send(:new) }
 

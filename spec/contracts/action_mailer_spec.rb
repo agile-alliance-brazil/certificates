@@ -1,4 +1,3 @@
-# encoding:UTF-8
 require 'rspec/expectations'
 
 describe ActionMailer::Base do

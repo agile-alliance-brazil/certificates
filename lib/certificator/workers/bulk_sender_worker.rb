@@ -1,4 +1,3 @@
-# encoding:UTF-8
 require 'certificator/models/mailed_certificate'
 require 'certificator/mailer/certificate_mailer'
 

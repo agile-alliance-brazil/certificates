@@ -1,4 +1,3 @@
-# encoding:UTF-8
 require 'aws/ses'
 
 # Delivery module holds multiple delivery options

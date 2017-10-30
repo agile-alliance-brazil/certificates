@@ -1,5 +1,3 @@
-# encoding:UTF-8
-
 module Certificator
   # Represents a certificate for a given attendee
   class Certificate

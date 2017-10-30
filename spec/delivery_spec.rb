@@ -1,5 +1,3 @@
-# encoding:UTF-8
-
 describe Delivery do
   describe 'configure_deliveries' do
     it 'should have dry_run as first option if dry_run is true' do

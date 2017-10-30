@@ -1,5 +1,3 @@
-# encoding:UTF-8
-
 describe Hash do
   describe 'except' do
     it 'should take keys and remove from hash' do

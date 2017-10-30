@@ -1,5 +1,3 @@
-# encoding:UTF-8
-
 describe Certificator::Configuration do
   let(:deliveries) do
     {
