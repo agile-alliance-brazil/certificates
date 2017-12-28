@@ -8,8 +8,8 @@ cd ${MY_DIR}
 
 ${MY_DIR}/setup.sh
 
-if [[ -n `uname | grep Darwin` ]] && [[ -z `which terminal-notifier` ]]; then
-  if [[ -n `which brew` ]]; then
+if [ ! -z $(uname | grep Darwin) ] && [ -z $(which terminal-notifier) ]; then
+  if [ ! -z $(which brew) ]; then
     echo "Installing terminal-notifier via brew..."
     brew install terminal-notifier
   else
