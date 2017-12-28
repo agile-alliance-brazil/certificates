@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.3.1'
+ruby '2.4.3'
 
 def linux_only(require_as)
   RbConfig::CONFIG['host_os'] =~ /linux/ ? require_as : false

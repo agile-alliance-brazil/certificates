@@ -6,7 +6,7 @@ This is a small helper script to generate and send attendees a certificate PDF b
 Prerequisite
 ============
 
-In order to run this script you need [ruby 2.3.1](http://www.ruby-lang.org/).
+In order to run this script you need [ruby 2.4.3](http://www.ruby-lang.org/).
 
 How to Use
 ==========
