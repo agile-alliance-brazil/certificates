@@ -29,7 +29,7 @@ if [ -z $(command -v inkscape) ]; then
 fi
 
 if [ -z $(command -v bundle) ]; then
-  gem install bundler -v 1.16.0
+  gem install bundler
 fi
 
 bundle install
