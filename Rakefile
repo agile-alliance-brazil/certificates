@@ -15,12 +15,12 @@ task ci: %i[spec codeclimate-test-reporter rubocop]
 
 task :'codeclimate-test-reporter' do
   sh 'if [ ! -z "${CODECLIMATE_REPO_TOKEN}" ]; then\
-    $(command -v bundler) exec codeclimate-test-reporter;\
+    bundle exec codeclimate-test-reporter;\
     fi'
 end
 
 task :rubocop do
-  sh '$(command -v bundler) exec rubocop'
+  sh 'bundle exec rubocop'
 end
 
 task default: :'test:ci'
