@@ -2,7 +2,7 @@ describe Certificator::Certificate do
   let(:decorator) { Certificator::Decorators::EventPdfCertificate.new('name') }
 
   it 'should not have attachment if pdf is nil' do
-    attendee = FactoryGirl.build(:attendee)
+    attendee = FactoryBot.build(:attendee)
     certificate = Certificator::Certificate.new(attendee, nil, decorator)
 
     expect(certificate.attachment?).to be_falsey
@@ -10,7 +10,7 @@ describe Certificator::Certificate do
 
   describe 'valid certificate' do
     subject(:certificate) do
-      attendee = FactoryGirl.build(:attendee)
+      attendee = FactoryBot.build(:attendee)
       Certificator::Certificate.new(attendee, 'data', decorator)
     end
 
