@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Certificator::InkscapeConverter do
   subject(:converter) { Certificator::InkscapeConverter.new('inkscape') }
 

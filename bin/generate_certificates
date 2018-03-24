@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
-lib = File.expand_path('../../lib', __FILE__)
+# frozen_string_literal: true
+
+lib = File.expand_path('../lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'rubygems'
 require 'json'
@@ -11,7 +13,7 @@ def build_smtp_options
   {
     address: ENV['SMTP_SERVER'],
     port: ENV['SMTP_PORT'] || '587',
-    domain: ENV['SENDER'] && ENV['SENDER'].split('@').last,
+    domain: ENV['SENDER']&.split('@')&.last,
     authentication: ENV['AUTHENTICATION'] || 'plain',
     user_name: ENV['SMTP_USERNAME'] || ENV['SENDER'],
     password: ENV['SMTP_PASSWORD']

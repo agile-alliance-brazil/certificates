@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Certificator::PrawnConverter do
   let(:svg_data) do
     File.read(

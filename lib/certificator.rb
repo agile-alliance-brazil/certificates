@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'certificator/version'
 require 'certificator/configuration/certificate_option_parser'
 require 'certificator/configuration'

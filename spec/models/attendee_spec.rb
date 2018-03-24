@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Certificator::Attendee do
   subject(:attendee) do
     Certificator::Attendee.new(name: 'Hugo Corbucci', email: 'fake@domain.com')

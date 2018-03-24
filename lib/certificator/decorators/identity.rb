@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Certificator
   module Decorators
     # The identity decorator. Returns what is given to it

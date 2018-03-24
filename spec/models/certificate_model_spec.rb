@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Certificator::CertificateModel do
   let(:svg) do
     File.read(

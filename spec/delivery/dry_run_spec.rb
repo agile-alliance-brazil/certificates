@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Delivery::DryRun do
   subject(:dry_run) { Delivery::DryRun.new }
 

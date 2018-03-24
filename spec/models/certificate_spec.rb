@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Certificator::Certificate do
   let(:decorator) { Certificator::Decorators::EventPdfCertificate.new('name') }
 

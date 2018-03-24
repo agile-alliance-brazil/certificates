@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Certificator
   module Decorators
     # Prepends a text before another text

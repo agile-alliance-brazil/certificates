@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'certificator/models/mailed_certificate'
 require 'certificator/mailer/certificate_mailer'
 
@@ -58,10 +60,10 @@ module Certificator
       )
     end
 
-    def log_error(e, attendee)
+    def log_error(err, attendee)
       STDERR.puts "Erro ao enviar certificado para #{attendee.inspect}."
-      STDERR.puts "Exceção: #{e.message}"
-      STDERR.puts e.backtrace
+      STDERR.puts "Exceção: #{err.message}"
+      STDERR.puts err.backtrace
     end
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Certificator
   module Decorators
     # Appends a given text at the end of any given text

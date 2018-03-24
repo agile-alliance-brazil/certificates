@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Certificator::Decorators::EventPdfCertificate do
   describe 'with prefix' do
     subject(:decorator) do

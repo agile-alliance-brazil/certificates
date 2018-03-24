@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Hash do
   describe 'except' do
     it 'should take keys and remove from hash' do

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Certificator
   # Uses inkscape (if available) to generate PDF based on an SVG
   class InkscapeConverter

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Certificator::CSVParser do
   let(:data) { "data,inline\none,two\nthree,four\n" }
 

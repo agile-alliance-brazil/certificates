@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Certificator
   module Decorators
     # Removes spaces from text

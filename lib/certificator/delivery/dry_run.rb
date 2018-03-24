@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'certificator/delivery/dry_run/dry_run_interceptor'
 
 module Delivery

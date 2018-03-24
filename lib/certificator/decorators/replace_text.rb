@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Certificator
   module Decorators
     # Replaces chuncks of text in the pattern with values of

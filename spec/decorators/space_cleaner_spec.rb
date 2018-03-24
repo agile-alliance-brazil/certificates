@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Certificator::Decorators::SpaceCleaner do
   subject(:decorator) { Certificator::Decorators::SpaceCleaner.new }
 

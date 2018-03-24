@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'certificator/models/certificate_model'
 require 'certificator/converters/inkscape_converter'
 require 'certificator/converters/prawn_converter'

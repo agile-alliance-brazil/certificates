@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Certificator::Configuration do
   let(:deliveries) do
     {
@@ -97,7 +99,7 @@ describe Certificator::Configuration do
 
     it 'should return delivery as first one' do
       delivery = double(
-        :'complete?' => true,
+        'complete?': true,
         to_hash: { user_name: 'test@somewhere.com' }
       )
 

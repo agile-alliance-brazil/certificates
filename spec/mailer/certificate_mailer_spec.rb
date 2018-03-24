@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Certificator::CertificateMailer do
   subject(:mailer) { Certificator::CertificateMailer.send(:new) }
 

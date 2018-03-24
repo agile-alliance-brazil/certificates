@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # A mailer interceptor to avoid from actually sending
 # the email but rather just log whatever would have happened
 class DryRunInterceptor

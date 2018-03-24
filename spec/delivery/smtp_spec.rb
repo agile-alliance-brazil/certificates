@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Delivery::SMTP do
   let(:default_settings) do
     {

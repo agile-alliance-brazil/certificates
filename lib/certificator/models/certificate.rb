@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Certificator
   # Represents a certificate for a given attendee
   class Certificate

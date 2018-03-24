@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Certificator::Decorators::PrependText do
   subject(:decorator) { Certificator::Decorators::PrependText.new('suffix-') }
 

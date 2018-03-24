@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Certificator
   # Represents an attendee coming from the CSV
   # It responds to methods named after each column

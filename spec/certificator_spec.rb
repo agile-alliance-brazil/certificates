@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Certificator do
   it 'has a version number' do
     expect(Certificator::VERSION).not_to be nil

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'aws/ses'
 
 # Delivery module holds multiple delivery options

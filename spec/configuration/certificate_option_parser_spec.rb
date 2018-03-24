@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Certificator::OptionParser do
   it 'should provide dry run as false on parse! without --dry-run' do
     options = subject.parse!([])

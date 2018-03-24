@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Certificator::MailedCertificate do
   let(:attendee) { double('attendee') }
   let(:certificate) { double('certificate') }

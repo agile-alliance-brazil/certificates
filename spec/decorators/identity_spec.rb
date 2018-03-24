@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Certificator::Decorators::Identity do
   subject(:decorator) { Certificator::Decorators::Identity.new }
 

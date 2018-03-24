@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Delivery do
   describe 'configure_deliveries' do
     it 'should have dry_run as first option if dry_run is true' do
