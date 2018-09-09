@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = <<-SUMMARY
   Small helper script to generate and send attendees certificate PDFs.
-SUMMARY
+  SUMMARY
   spec.homepage      = 'https://github.com/agile-alliance-brazil/certificates'
   spec.license       = 'MIT'
 

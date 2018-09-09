@@ -69,19 +69,19 @@ module Certificator
   \t* data.csv -- A CSV file containing the attendee's list with their names, emails and presence.
   \t* model.svg -- An SVG model file which will be interpreted to generate the PDF for each attendee.
   \t* email.md.erb -- A Markdown file with ERB tags. The tags will be interpreted with an attendee model. The generated markdown will compose the email's body in plain text, it's HTML version interpreted by Markdown and the email subject as the first line of that body.
-  USAGE
+      USAGE
     end
 
     def cache_message
       <<-CACHE_MESSAGE
   Cache generated PDFs in PATH. If PATH is not specified, save them in a folder called certificates in the folder specified as data
-  CACHE_MESSAGE
+      CACHE_MESSAGE
     end
 
     def filename_message
       <<-FILENAME_MESSAGE
   Generates PDF filenames with the given name-pattern. For every chunk of the name pattern (separated by '-'), we will try to replace that chunk with the matching CSV column. For instance, for a CSV with columns 'First name' and 'Last name' and a pattern of 'Certificate-First name-Last name' the PDF filename for a row with value 'Attendee' for column 'First name' and 'One' for column 'Last name', the resulting PDF filename will be 'Certificate-Attendee-One.pdf'. Defaults to simply the row number like '1.pdf'.
-  FILENAME_MESSAGE
+      FILENAME_MESSAGE
     end
 
     def common_options(opts)

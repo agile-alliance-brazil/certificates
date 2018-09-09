@@ -13,7 +13,7 @@ module Certificator
     end
 
     def respond_to_missing?(method, _include_private = false)
-      @attributes.keys.include?(method.to_s)
+      @attributes.key?(method.to_s)
     end
 
     def method_missing(method, *args, &block)

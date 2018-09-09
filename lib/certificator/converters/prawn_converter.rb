@@ -29,7 +29,7 @@ module Certificator
   text.\nIf you generated it with Inkscape, please edit your SVG and ensure all
   text elements are converted to text tags by using the 'Text->Convert to Text'
   menu.
-  FLOW_WARNING
+      FLOW_WARNING
     end
 
     def generate_pdf(svg_data, pdf_file)

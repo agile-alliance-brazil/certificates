@@ -19,8 +19,6 @@ module Delivery
     deliveries
   end
 
-  private_class_method
-
   def self.build_aws(config)
     Delivery::AWS.new(
       config[:access_key_id],
