@@ -45,11 +45,11 @@ module Certificator
 
     def deliver_certificate_for(attendee)
       certificate = @generator.generate_certificate_for(attendee)
-      if attendee.email && attendee.email.strip.size > 0
-        mailed_certificate = mailed_certificate_for(attendee, certificate)
-        mail = Certificator::CertificateMailer.certificate_to(mailed_certificate)
-        mail.deliver_now
-      end
+      return if attendee.email.nil? || !attendee.email.strip.size.positive?
+
+      mailed_certificate = mailed_certificate_for(attendee, certificate)
+      mail = Certificator::CertificateMailer.certificate_to(mailed_certificate)
+      mail.deliver_now
     end
 
     def mailed_certificate_for(attendee, certificate)
