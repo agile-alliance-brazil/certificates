@@ -14,17 +14,17 @@ if [ -z $(command -v ruby) ]; then
   echo "Please ensure ruby is installed and try again" && exit 1
 fi
 
-if [ -z $( (uname | grep Darwin &> /dev/null) && command -v brew ) ]; then
+if (uname | grep -q Darwin) && [ -z $( command -v brew ) ]; then
   echo "Installing brew..."
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
 if [ -z $(command -v inkscape) ]; then
   echo "Installing inkscape..."
-  if [ ! -z $(uname | grep Darwin) ]; then
+  if (uname | grep -q Darwin); then
     ((brew --version > /dev/null) && (brew tap caskroom/cask > /dev/null) && (brew cask install xquartz inkscape))
   else
-    ((apt-get --version > /dev/null) && (apt-get install inkscape))
+    ((apt-get --version > /dev/null) && (apt-get install -y inkscape))
   fi
 fi
 
