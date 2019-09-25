@@ -19,7 +19,8 @@ ENDPOINT="nyc3.digitaloceanspaces.com"
 for file in $*; do
   resource="/${bucket}/${file}"
   contentType=$(file --mime "${file}" | sed -e 's/^.*: //g')
-  stringToSign="PUT\n\n${contentType}\n${dateValue}\n${resource}"
+  acl="public-read"
+  stringToSign="PUT\n\n${contentType}\n${dateValue}\nx-amz-acl:${acl}\n${resource}"
   echo ${stringToSign}
 
   signature=$(echo -en ${stringToSign} | openssl sha1 -hmac ${DO_SPACES_SECRET_ACCESS_KEY} -binary | base64)
@@ -28,5 +29,6 @@ for file in $*; do
     -H "Date: ${dateValue}" \
     -H "Content-Type: ${contentType}" \
     -H "Authorization: AWS ${DO_SPACES_ACCESS_KEY_ID}:${signature}" \
+    -H "x-amz-acl: ${acl}" \
     "https://${bucket}.${ENDPOINT}/${file}" && echo "Uploaded ${file}"
 done
