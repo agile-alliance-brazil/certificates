@@ -62,9 +62,9 @@ module Certificator
     end
 
     def log_error(err, attendee)
-      STDERR.puts "Erro ao enviar certificado para #{attendee.inspect}."
-      STDERR.puts "Exceção: #{err.message}"
-      STDERR.puts err.backtrace
+      warn "Erro ao enviar certificado para #{attendee.inspect}."
+      warn "Exceção: #{err.message}"
+      warn err.backtrace
     end
   end
 end

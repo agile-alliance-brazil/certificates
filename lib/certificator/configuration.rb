@@ -38,6 +38,7 @@ module Certificator
     def raise_error_if_incomplete(options)
       error_class = ConfigurationError
       raise error_class, options[:help] if options[:data_folder].nil?
+
       if @email_sender.nil?
         raise error_class, "Missing SENDER information. Please define an \
   environment variable with key name 'SENDER' or add that entry to your .env \
