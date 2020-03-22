@@ -24,6 +24,9 @@ describe Certificator::PrawnConverter do
       .and_call_original
 
     result = subject.convert_to_pdf(svg_data)
+    File.open('/tmp/result.pdf', 'w+') do |file|
+      file.puts result
+    end
     expect(result).to eq(expected_pdf_data)
   end
 end
