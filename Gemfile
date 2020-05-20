@@ -11,7 +11,7 @@ def darwin_only(require_as)
   RbConfig::CONFIG['host_os'].match?(/darwin/) ? require_as : false
 end
 
-gem 'actionmailer', '~> 5.2', '>= 5.2.4.2'
+gem 'actionmailer', '~> 5.2', '>= 5.2.4.3'
 gem 'aws-ses', require: 'aws/ses'
 gem 'dotenv'
 gem 'json', '>= 2.3.0'
@@ -21,7 +21,7 @@ gem 'redcarpet'
 
 group :development, :test do
   gem 'byebug'
-  gem 'factory_bot'
+  gem 'factory_bot', '>= 5.1.1'
   gem 'guard'
   gem 'guard-rspec'
   gem 'guard-rubocop'
