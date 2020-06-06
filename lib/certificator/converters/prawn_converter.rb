@@ -54,7 +54,7 @@ module Certificator
     def build_family_map(family)
       available_family_fonts = @font_paths.select { |p| p.match(/#{family}/) }
       available_family_fonts.inject({}) do |m, font|
-        match = font.match(/#{family}-([^\.-]+)/)
+        match = font.match(/#{family}-([^.-]+)/)
         if match
           m.merge(match[1].to_sym => File.expand_path(font))
         else
