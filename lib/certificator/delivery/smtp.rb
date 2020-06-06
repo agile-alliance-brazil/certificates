@@ -25,9 +25,7 @@ module Delivery
 
       message = "There are problems with your SMTP server configuration:\n"
       message += message_for(:address, 'SMTP_SERVER')
-      if !@settings['SMTP_USERNAME'] && !@settings['SENDER']
-        message += message_for(:user_name, 'SMTP_USERNAME')
-      end
+      message += message_for(:user_name, 'SMTP_USERNAME') if !@settings['SMTP_USERNAME'] && !@settings['SENDER']
       message += message_for(:domain, 'SENDER')
       message += message_for(:password, 'SMTP_PASSWORD')
       message
