@@ -24,12 +24,12 @@ group :development, :test do
   gem 'factory_bot', '>= 5.1.1'
   gem 'guard'
   gem 'guard-rspec'
-  gem 'guard-rubocop'
+  gem 'guard-rubocop', '>= 1.3.0'
   gem 'pry'
   gem 'rb-fsevent', require: darwin_only('rb-fsevent')
   gem 'rb-inotify', require: linux_only('rb-inotify')
   gem 'rspec'
-  gem 'rubocop'
+  gem 'rubocop', '>= 0.85.0'
   gem 'terminal-notifier-guard', require: darwin_only('terminal-notifier-guard')
 end
 
