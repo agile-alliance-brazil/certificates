@@ -31,9 +31,13 @@ module Delivery
     def to_hash
       hash = {
         access_key_id: @key_id,
-        secret_access_key: @secret
+        secret_access_key: @secret,
+        signature_version: 4
       }
-      hash[:server] = @server if @server
+      if @server
+        hash[:server] = @server
+        hash[:region] = @server.gsub('email.','').gsub('.amazonaws.com','')
+      end
       hash
     end
 
