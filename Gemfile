@@ -15,7 +15,7 @@ gem 'actionmailer', '~> 5.2', '>= 5.2.4.3'
 gem 'aws-ses', git: 'https://github.com/zebitex/aws-ses.git', ref: '78-sigv4-problem', require: 'aws/ses'
 gem 'dotenv'
 gem 'json', '>= 2.3.0'
-gem 'prawn-svg'
+gem 'prawn-svg', '>= 0.30.0'
 gem 'rake'
 gem 'redcarpet'
 
