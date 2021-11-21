@@ -198,7 +198,7 @@ DEPENDENCIES
   rake
   rb-fsevent
   rb-inotify
-  redcarpet
+  redcarpet (>= 3.5.1)
   rspec
   rubocop (>= 1.23.0)
   terminal-notifier-guard
@@ -207,4 +207,4 @@ RUBY VERSION
    ruby 3.0.2p107
 
 BUNDLED WITH
-   1.17.3
+   2.2.31
