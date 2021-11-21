@@ -36,7 +36,7 @@ module Delivery
       }
       if @server
         hash[:server] = @server
-        hash[:region] = @server.gsub('email.','').gsub('.amazonaws.com','')
+        hash[:region] = @server.gsub('email.', '').gsub('.amazonaws.com', '')
       end
       hash
     end
