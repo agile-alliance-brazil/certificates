@@ -11,7 +11,7 @@ module Certificator
     extend Forwardable
     def_delegators :@csv, :map, :select
 
-    def initialize(content, has_headers = true)
+    def initialize(content, has_headers: true)
       @csv = CSV.parse(content)
       @headers = @csv.shift if has_headers
     end

@@ -2,6 +2,8 @@
 
 require 'rspec/expectations'
 
+class FakeActionMailer < ActionMailer::Base; end
+
 describe ActionMailer::Base do
   describe 'add_delivery_method' do
     it 'should take an id, a base class and params' do
@@ -45,7 +47,6 @@ describe ActionMailer::Base do
 
   describe 'instance' do
     subject(:mailer) do
-      class FakeActionMailer < ActionMailer::Base; end
       FakeActionMailer.send(:new)
     end
 

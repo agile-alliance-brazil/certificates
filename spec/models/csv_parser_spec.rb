@@ -4,7 +4,7 @@ describe Certificator::CSVParser do
   let(:data) { "data,inline\none,two\nthree,four\n" }
 
   context 'without header' do
-    subject(:parser) { Certificator::CSVParser.new(data, false) }
+    subject(:parser) { Certificator::CSVParser.new(data, has_headers: false) }
 
     it 'should not ignore first row' do
       expect(parser.select { true }.size).to eq(3)
@@ -16,7 +16,7 @@ describe Certificator::CSVParser do
   end
 
   context 'with header' do
-    subject(:parser) { Certificator::CSVParser.new(data, true) }
+    subject(:parser) { Certificator::CSVParser.new(data, has_headers: true) }
 
     it 'should ignore first row' do
       expect(parser.select { true }.size).to eq(2)

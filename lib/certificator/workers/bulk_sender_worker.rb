@@ -20,13 +20,11 @@ module Certificator
     def perform(attendees)
       @errors = []
       attendees.each do |attendee|
-        begin
-          deliver_certificate_for(attendee)
-          sleep(PROCESSING_INTERVAL)
-        rescue StandardError => e
-          log_error(e, attendee)
-          @errors << attendee
-        end
+        deliver_certificate_for(attendee)
+        sleep(PROCESSING_INTERVAL)
+      rescue StandardError => e
+        log_error(e, attendee)
+        @errors << attendee
       end
     end
 
@@ -34,9 +32,9 @@ module Certificator
       return if @errors.empty?
 
       messages = "Falha ao enviar certificado para as seguintes pessoas:\n"
-      messages += @errors.first.attributes.keys.join(',') + "\n"
+      messages += "#{@errors.first.attributes.keys.join(',')}\n"
       @errors.each do |attendee|
-        messages += attendee.attributes.map { |_, v| v }.join(',') + "\n"
+        messages += "#{attendee.attributes.map { |_, v| v }.join(',')}\n"
       end
       messages
     end

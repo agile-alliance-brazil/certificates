@@ -2,7 +2,6 @@
 
 require 'factory_bot'
 
-FactoryBot.reset_configuration
 FactoryBot.register_strategy(:build, FactoryBot::Strategy::Build)
 FactoryBot.find_definitions
 

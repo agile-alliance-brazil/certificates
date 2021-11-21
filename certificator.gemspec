@@ -10,7 +10,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Hugo Corbucci']
   spec.email         = ['sistemas@agilebrazil.com']
 
-  spec.summary       = <<-SUMMARY
+  spec.required_ruby_version = '3.0.2'
+
+  spec.summary = <<-SUMMARY
   Small helper script to generate and send attendees certificate PDFs.
   SUMMARY
   spec.homepage      = 'https://github.com/agile-alliance-brazil/certificates'

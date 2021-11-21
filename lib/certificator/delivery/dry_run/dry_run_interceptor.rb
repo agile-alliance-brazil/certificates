@@ -3,7 +3,7 @@
 # A mailer interceptor to avoid from actually sending
 # the email but rather just log whatever would have happened
 class DryRunInterceptor
-  def initialize(output = STDOUT)
+  def initialize(output = $stdout)
     @output = output
   end
 
