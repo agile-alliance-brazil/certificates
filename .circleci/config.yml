@@ -17,7 +17,7 @@ jobs:
         # This branch if available
         - v1-dep-{{ .Branch }}-
         # Default branch if not
-        - v1-dep-master-
+        - v1-dep-main-
         # Any branch if there are none on the default branch - this should be unnecessary if you have your default branch configured correctly
         - v1-dep-
     - run: gem update --system

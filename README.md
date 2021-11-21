@@ -11,7 +11,7 @@ In order to run this script you need [ruby 3.0.2](http://www.ruby-lang.org/).
 How to Use
 ==========
 
-Download the [project's ZIP](https://github.com/agile-alliance-brazil/certificates/archive/master.zip) or clone the project somewhere:
+Download the [project's ZIP](https://github.com/agile-alliance-brazil/certificates/archive/main.zip) or clone the project somewhere:
 
 ```
 git clone https://github.com/agile-alliance-brazil/certificates.git
