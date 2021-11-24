@@ -13,19 +13,19 @@ How to Use
 
 Download the [project's ZIP](https://github.com/agile-alliance-brazil/certificates/archive/main.zip) or clone the project somewhere:
 
-```
+```bash
 git clone https://github.com/agile-alliance-brazil/certificates.git
 ```
 
 In the root folder, run:
 
-```
+```bash
 ./setup.sh
 ```
 
 This will create a .env file in that same folder. Open it and edit the values to match your needs. Copy the example folder into your own (let's say "example"), change the contents to match your attendees (in a CSV file called data.csv inside that folder), your certificate's svg (called model.svg in that folder) and an email template in markdown (called email.md.erb). Then run:
 
-```
+```bash
 bundle exec ruby ./bin/generate_certificates example --dry-run
 ```
 
@@ -33,7 +33,7 @@ This should generate the certificates for you and just print what action would b
 
 Your CSV file needs to have headers and you can use those headers to map values into your SVG and into the certificate PDF filename. Your CSV MUST have a header called 'email'. For the next couple paragraph, consider a CSV like:
 
-```
+```bash
 First name,Last name,email
 Attendee,One,attendee.one@yourconf.org
 ```
