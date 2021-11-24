@@ -38,7 +38,7 @@ urlencode() {
 for file in $*; do
   filename=$(basename "${file}")
   dirname=$(dirname "${file}")
-  resource="/${bucket}/${file}"
+  resource="/${bucket}/${dirname}/$(urlencode ${filename})"
   contentType=$(file --mime "${file}" | sed -e 's/^.*: //g')
   acl="public-read"
   stringToSign="PUT\n\n${contentType}\n${dateValue}\nx-amz-acl:${acl}\n${resource}"
